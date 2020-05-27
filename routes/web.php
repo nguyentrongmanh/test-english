@@ -23,4 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
 	Route::get('/home', 'Admin\UsersController@index')->name('home');
+	Route::get('/listenings/create', 'Admin\ListeningsController@getCreate');
+	Route::get('/readings/create', 'Admin\ReadingsController@getCreate');
+	Route::post('/readings/create', 'Admin\ReadingsController@create')->name("create-listening");
 });
