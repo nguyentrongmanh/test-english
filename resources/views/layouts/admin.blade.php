@@ -9,12 +9,14 @@
 
 	<title>SB Admin 2 - Dashboard</title>
 	<link href="{{ url('css/fontawesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="{{ url('css/admin.css') }}" rel="stylesheet">
 	<link href="{{ url('css/quill.css') }}" rel="stylesheet">
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ url('js/quill.js') }}"></script>
+	<script src="{{ url('js/sweetalert.min.js') }}"></script>
 </head>
 <body>
   <div id="wrapper">
