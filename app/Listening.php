@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Listening extends Model
 {
@@ -12,5 +13,9 @@ class Listening extends Model
 	];
 	public function questions() {
 		return $this->hasMany('App\Question');
+	}
+
+	public function getFormatCreated() {
+		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
 	}
 }

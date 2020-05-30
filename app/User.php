@@ -35,5 +35,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+	];
+	public function getFormatCreated() {
+		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
+	}
 }

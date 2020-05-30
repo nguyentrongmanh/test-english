@@ -26,7 +26,7 @@ Route::get('/test/part-six', 'TestController@partSix')->name('test-part-six');
 Route::get('/test/part-seven', 'TestController@partSeven')->name('test-part-seven');
 Route::get('/test/result', 'TestController@result')->name('test-result');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::get('/home', 'Admin\UsersController@index')->name('home');
 	// listening
 	Route::post('/listenings/create', 'Admin\ListeningsController@create')->name("create-listening");

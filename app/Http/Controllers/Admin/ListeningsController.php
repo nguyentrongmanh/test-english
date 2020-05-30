@@ -17,7 +17,7 @@ class ListeningsController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		// $this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -28,10 +28,13 @@ class ListeningsController extends Controller {
 	public function index(Request $request) {
 		$queryParams = $request->query();
 		$part = $queryParams["part"] ?? ToeicPart::PART_ONE;
+		$limit = $queryParams["limit"] ?? 10;
 		$listeningQuestions = Listening::where("part", $part)
-			->get();
+			->paginate($limit);
 		return view('admin.listenings.index', [
 			"listeningQuestions" => $listeningQuestions,
+			"part" => $part,
+			"limit" => $limit
 		]);
 	}
 
@@ -50,10 +53,10 @@ class ListeningsController extends Controller {
 			$result = $this->createPartTwo($request);
 			break;
 		case ToeicPart::PART_THREE:
-			$result = $this->createPartThree($data);
+			$result = $this->createPartThree($request);
 			break;
 		case ToeicPart::PART_FOUR:
-			$result = $this->createPartFour($data);
+			$result = $this->createPartFour($request);
 			break;
 		default:
 			# code...
@@ -142,7 +145,8 @@ class ListeningsController extends Controller {
 				"main_img" => $imageName,
 				"audio" => $audioName
 			]);
-
+			
+			$questionData = $request->input("questions");
 			foreach ($questionData as $key => $value) {
 				$questionData[$key]["listening_id"] = $newPartThree->id;
 			}
@@ -175,7 +179,8 @@ class ListeningsController extends Controller {
 				"main_img" => $imageName,
 				"audio" => $audioName
 			]);
-
+			
+			$questionData = $request->input("questions");
 			foreach ($questionData as $key => $value) {
 				$questionData[$key]["listening_id"] = $newPartFour->id;
 			}

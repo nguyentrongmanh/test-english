@@ -28,7 +28,7 @@
 			<div class="form-group">
 				<label for="exampleFormControlInput1">Audio</label>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="audio" accept=".mp3">
+					<input type="file" class="custom-file-input" name="audio" accept=".mp3" required>
 					<label class="custom-file-label" for="audio">Choose file...</label>
 					<div class="invalid-feedback">Example invalid custom file feedback</div>
 				</div>
@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<label for="exampleFormControlInput1">image</label>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="main_img" required>
+					<input type="file" class="custom-file-input" name="main_img">
 					<label class="custom-file-label" for="main_img">Choose file...</label>
 					<div class="invalid-feedback">Example invalid custom file feedback</div>
 				</div>
@@ -71,6 +71,11 @@
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Questions {{ $i }}</label>
 						<input name="questions[{{$i}}][question]" class="form-control" id="exampleFormControlTextarea1"
+							type="text" />
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">Option A</label>
+						<input class="form-control" name="questions[{{$i}}][option_a]" id="exampleFormControlTextarea1"
 							type="text" />
 					</div>
 					<div class="form-group">

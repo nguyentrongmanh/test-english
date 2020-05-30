@@ -17,5 +17,8 @@ class Question extends Model
         "option_c",
         "option_d",
         "explain",
-    ];
+	];
+	public function getFormatCreated() {
+		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
+	}
 }

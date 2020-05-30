@@ -16,7 +16,7 @@ class ReadingsController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		// $this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -27,10 +27,13 @@ class ReadingsController extends Controller {
 	public function index(Request $request) {
 		$queryParams = $request->query();
 		$part = $queryParams["part"] ?? ToeicPart::PART_FIVE;
+		$limit = $queryParams["limit"] ?? 10;
 		$readingQuestions = Reading::where("part", $part)
-			->get();
+			->paginate($limit);
 		return view('admin.readings.index', [
 			"readingQuestions" => $readingQuestions,
+			"part" => $part,
+			"limit" => $limit
 		]);
 	}
 
