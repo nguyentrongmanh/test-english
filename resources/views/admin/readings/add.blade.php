@@ -6,8 +6,7 @@
 		<h6 class="m-0 font-weight-bold text-primary">Thêm câu hỏi bài đọc</h6>
 	</div>
 	<div class="card-body">
-		<form method="POST" id="add-listening-form" enctype='multipart/form-data'
-			action="{{ route('create-reading') }}">
+		<form method="POST" id="add-reading-form" enctype='multipart/form-data' action="{{ route('create-reading') }}">
 			@csrf
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" value="5" name="part" id="inlineRadio1">
@@ -31,27 +30,27 @@
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Questions</label>
 						<input name="questions[0][question]" class="form-control" id="exampleFormControlTextarea1"
-							type="text"></input>
+							type="text" />
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Option A</label>
 						<input class="form-control" name="questions[0][option_a]" id="exampleFormControlTextarea1"
-							type="text"></input>
+							type="text" />
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Option B</label>
 						<input class="form-control" name="questions[0][option_b]" id="exampleFormControlTextarea1"
-							type="text"></input>
+							type="text" />
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Option C</label>
 						<input class="form-control" name="questions[0][option_c]" id="exampleFormControlTextarea1"
-							type="text"></input>
+							type="text" />
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Option D</label>
 						<input class="form-control" name="questions[0][option_d]" id="exampleFormControlTextarea1"
-							type="text"></input>
+							type="text" />
 					</div>
 					<div class="form-group">
 						<div>Aswer</div>
@@ -85,9 +84,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-</script>
-<script type="text/javascript">
 	$(document).ready(function() {
 			const PART_FIVE = 5;
 			const PART_SIX = 6;
@@ -96,7 +92,7 @@
 			    theme: 'snow'
 			});
 			var dataOrder = 0;
-			$("#add-listening-form").on("submit", function(e) {
+			$("#add-reading-form").on("submit", function(e) {
 				$("input[name=post]").val(quill.root.innerHTML);
 				$(this).submit();
 			});
