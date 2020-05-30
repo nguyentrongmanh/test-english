@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
 	// listening
 	Route::post('/listenings/create', 'Admin\ListeningsController@create')->name("create-listening");
 	Route::get('/listenings/create', 'Admin\ListeningsController@getCreate')->name("create-listening");
+	Route::get('/listenings', 'Admin\ListeningsController@index')->name("index-listening");
 	//reading
 	Route::get('/readings/create', 'Admin\ReadingsController@getCreate')->name("create-reading");
 	Route::get('/readings', 'Admin\ReadingsController@index')->name("index-reading");

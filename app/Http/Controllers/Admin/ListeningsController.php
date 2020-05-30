@@ -25,18 +25,17 @@ class ListeningsController extends Controller {
 	 *
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
-	public function index(Request $requet) {
+	public function index(Request $request) {
 		$queryParams = $request->query();
-		$part = $queryParams["part"];
+		$part = $queryParams["part"] ?? ToeicPart::PART_ONE;
 		$listeningQuestions = Listening::where("part", $part)
-			->join("questions", "")
 			->get();
 		return view('admin.listenings.index', [
 			"listeningQuestions" => $listeningQuestions,
 		]);
 	}
 
-	public function getCreate(Request $requet) {
+	public function getCreate(Request $request) {
 		return view('admin.listenings.add');
 	}
 
@@ -56,7 +55,6 @@ class ListeningsController extends Controller {
 		case ToeicPart::PART_FOUR:
 			$result = $this->createPartFour($data);
 			break;
-
 		default:
 			# code...
 			break;
