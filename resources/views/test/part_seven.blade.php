@@ -2,12 +2,10 @@
 
 @section('content')
 <div class="top-nav">
-	<h4 class="sm black bold">Part VI: Incomplete Sentences</h4>
+	<h4 class="sm black bold">Part VII: Reading Comprehension</h4>
 	<ul class="top-nav-list">
-		<li><a href="#"><i class="fas fa-arrow-right"></i><b>FINISH ALL</b></a></li>
-		<li class="timer"><a style="font-size: 25px; padding-left: 15px; padding-right: 15px"
-				href="#"><b>01:30:00</b></a>
-		</li>
+		<li><a href="#"><i class="fas fa-arrow-right"></i><b>Bách Khoa Toeic</b></a></li>
+		<li class="timer" id="count-down"></a>
 		<li class="outline-learn part-list">
 			<a href="#"><i class="fas fa-list-alt"></i></a>
 			<div class="list-item-body outline-learn-body ps-container ps-active-y"
@@ -32,11 +30,10 @@
 		<div class="question-content-wrap" style="height: auto !important;">
 			<div class="row" style="height: auto !important; justify-content: center;">
 				<div class="col-md-10 col-md-push-1" style="height: auto !important; min-height: 0px !important;">
-					@foreach ($partSevenQuestions as $index => $item)
+					@foreach ($readingQuestions as $index => $item)
 					@php
 					$fromIndex = $startIndex;
 					$toIndex = $fromIndex + ( $item->number_of_questions - 1);
-					$startIndex = $toIndex + 1;
 					@endphp
 					<div class="question-content">
 						<p class="text-justify">
@@ -47,45 +44,56 @@
 						</div>
 						@foreach ($item->questions as $question)
 						<div class="answer">
-							<p><b>{{ $fromIndex }}. {{ $question->question }}</b></p>
+							<p><b>{{ $startIndex }}. {{ $question->question }}</b></p>
 							<ul class="answer-list">
 								<li>
-									<input type="radio" name="39" value="14139" id="14139">
-									<label for="14139">
+									<input id="question_{{$question->id}}1" type="radio" data-id="{{$question->id}}"
+										name="question_{{$question->id}}" value="A">
+									<label for="question_{{$question->id}}1">
 										<i class="icon icon_radio"></i>
-										A. {{$question->option_a}}
+										A. {{ $question->option_a }}
 									</label>
 								</li>
 								<li>
-									<input type="radio" name="39" value="14140" id="14140">
-									<label for="14140">
+									<input id="question_{{$question->id}}2" type="radio" data-id="{{$question->id}}"
+										name="question_{{$question->id}}" value="B">
+									<label for="question_{{$question->id}}2">
 										<i class="icon icon_radio"></i>
-										B. {{$question->option_b}}
+										B. {{ $question->option_b }}
 									</label>
 								</li>
 								<li>
-									<input type="radio" name="39" value="14141" id="14141">
-									<label for="14141">
+									<input id="question_{{$question->id}}3" type="radio" data-id="{{$question->id}}"
+										name="question_{{$question->id}}" value="C">
+									<label for="question_{{$question->id}}3">
 										<i class="icon icon_radio"></i>
-										C. {{$question->option_c}}
+										C. {{ $question->option_c }}
 									</label>
 								</li>
 								<li>
-									<input type="radio" name="39" value="14142" id="14142">
-									<label for="14142">
+									<input id="question_{{$question->id}}4" type="radio" data-id="{{$question->id}}"
+										name="question_{{$question->id}}" value="D">
+									<label for="question_{{$question->id}}4">
 										<i class="icon icon_radio"></i>
-										D. {{$question->option_d}}
+										D. {{ $question->option_d }}
 									</label>
 								</li>
-								@php
-								$fromIndex++;
-								@endphp
 							</ul>
 						</div>
+						@php
+						$startIndex++;
+						@endphp
 						@endforeach
 					</div>
 					@endforeach
-					<button type="submit" class="mc-btn btn-style-6" style="margin-bottom: 50px;">Next</button>
+					<form method="POST" id="test" enctype='multipart/form-data' action="{{ route('test-result') }}">
+						@csrf
+						<input type="hidden" name="score">
+						<input type="hidden" name="true_answer_part_seven_ids">
+						<input type="hidden" name="count_down">
+						<input type="hidden" name="start_index" value="{{$startIndex}}">
+						<button type="submit" class="mc-btn btn-style-6">Next</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -94,10 +102,19 @@
 </section>
 <script>
 	$(document).ready(function() {
-		var questionList = {!! json_encode($partSevenQuestions) !!};
+		var post = {!! json_encode($readingQuestions) !!};
 		$('.main-article').each(function(index,element) {
-			$(this).html(questionList[index].post)
+			$(this).html(post[index].post)
 		});
 	})
 </script>
+
+<script>
+	var list = {!! json_encode($readingQuestions) !!};
+	var hiddenInput = "true_answer_part_seven_ids"
+	var t1 = new Date();
+	var defaultCountDown = parseInt({!! json_encode($countDown) !!});
+</script>
+<script src="{{ url('js/listening_test.js') }}"></script>
+
 @endsection

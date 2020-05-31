@@ -20,14 +20,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test/intro', 'TestController@intro')->name('test-intro');
-Route::get('/test/part-five', 'TestController@partFive')->name('test-part-five');
-Route::get('/test/part-six', 'TestController@partSix')->name('test-part-six');
-Route::get('/test/part-seven', 'TestController@partSeven')->name('test-part-seven');
-Route::get('/test/result', 'TestController@result')->name('test-result');
+Route::get('/test/start', 'TestController@start')->name('test-start');
+Route::get('/test/part-one', 'TestController@partOne')->name('test-part-one');
+Route::post('/test/part-two', 'TestController@partTwo')->name('test-part-two');
+Route::post('/test/part-three', 'TestController@partThree')->name('test-part-three');
+Route::post('/test/part-four', 'TestController@partFour')->name('test-part-four');
+Route::post('/test/part-five', 'TestController@partFive')->name('test-part-five');
+Route::post('/test/part-six', 'TestController@partSix')->name('test-part-six');
+Route::post('/test/part-seven', 'TestController@partSeven')->name('test-part-seven');
+Route::post('/test/result', 'TestController@result')->name('test-result');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-	Route::get('/home', 'Admin\UsersController@index')->name('home');
+	Route::get('/home', 'Admin\UsersController@index');
 	// listening
 	Route::post('/listenings/create', 'Admin\ListeningsController@create')->name("create-listening");
 	Route::get('/listenings/create', 'Admin\ListeningsController@getCreate')->name("create-listening");

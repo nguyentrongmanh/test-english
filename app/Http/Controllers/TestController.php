@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Reading;
+use App\Listening;
+use App\Test;
 use App\Enums\ToeicPart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller {
 	/**
@@ -11,7 +15,7 @@ class TestController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		// $this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -19,47 +23,261 @@ class TestController extends Controller {
 	 *
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
-	public function intro() {
+	public function start(Request $request) {
+		$user = $this->get_login_user();
+		$partOneIds = Listening::where("part", ToeicPart::PART_ONE)
+			->select("id")
+			->inRandomOrder()
+			->limit(2)
+			->pluck("id")
+			->toArray();
+		$partTwoIds = Listening::where("part", ToeicPart::PART_TWO)
+			->select("id")
+			->inRandomOrder()
+			->limit(2)
+			->pluck("id")
+			->toArray();
+		$partThreeIds = Listening::where("part", ToeicPart::PART_THREE)
+			->select("id")
+			->inRandomOrder()
+			->limit(2)
+			->pluck("id")
+			->toArray();
+		$partFourIds = Listening::where("part", ToeicPart::PART_FOUR)
+			->select("id")
+			->inRandomOrder()
+			->limit(2)
+			->pluck("id")
+			->toArray();
+		$partFiveIds = Reading::where("part", ToeicPart::PART_FIVE)
+			->select("id")
+			->inRandomOrder()
+			->limit(2)
+			->pluck("id")
+			->toArray();
+		$partSixIds = Reading::where("part", ToeicPart::PART_SIX)
+			->select("id")
+			->inRandomOrder()
+			->limit(1)
+			->pluck("id")
+			->toArray();
+		$partSevenIds = Reading::where("part", ToeicPart::PART_SEVEN)
+			->select("id")
+			->inRandomOrder()
+			->limit(1)
+			->pluck("id")
+			->toArray();
+		try {
+			$test = Test::Create([
+				'user_id' => $user->id,
+				'part_one_ids' => implode(",", $partOneIds),
+				'part_two_ids' => implode(",", $partTwoIds),
+				'part_three_ids' => implode(",", $partThreeIds),
+				'part_four_ids' => implode(",", $partFourIds),
+				'part_five_ids' => implode(",", $partFiveIds),
+				'part_six_ids' => implode(",", $partSixIds),
+				'part_seven_ids' => implode(",", $partSevenIds),
+				"complete_flg" => false
+			]);
+			$request->session()->put('startTest', $test);
+		} catch (\Exception $e) {
+			return redirect()->route("home");
+		}
 		return view('intro');
 	}
 
-	public function partFive() {
-		$partFiveQuestions = Reading::where("part", ToeicPart::PART_FIVE)
-			->inRandomOrder()
-			->limit(2)
+	public function partOne(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$partOneIds = explode(",", $startTest->part_one_ids);
+		$listeningQuestions = Listening::whereIn("id", $partOneIds)
 			->get();
-		$startIndex = 5;
+		$startIndex = 1;
+		return view('test.part_one', [
+			"listeningQuestions" => $listeningQuestions,
+			"startIndex" => $startIndex,
+		]);
+	}
+
+	public function partTwo(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerPartOneIds = $request->input("true_answer_part_one_ids");
+		try {
+			$startTest->true_answer_part_one_ids = $trueAnswerPartOneIds;
+			$startTest->part_one_score = $request->input('score');
+			$startTest->save();
+		} catch (\Exception $e) {
+			Log::info($e);
+			return redirect()->route("home");
+		}
+
+		$partTwoIds = explode(",", $startTest->part_two_ids);
+		$listeningQuestions = Listening::whereIn("id", $partTwoIds)
+			->get();
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
+		return view('test.part_two', [
+			"listeningQuestions" => $listeningQuestions,
+			"startIndex" => $startIndex,
+			"countDown" => $countDown,
+		]);
+	}
+
+	public function partThree(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerPartTwoIds = $request->input("true_answer_part_two_ids");
+		try {
+			$startTest->true_answer_part_two_ids = $trueAnswerPartTwoIds;
+			$startTest->part_two_score = $request->input('score');
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$ids = explode(",", $startTest->part_three_ids);
+		$listeningQuestions = Listening::whereIn("id", $ids)
+			->get();
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
+		return view('test.part_three', [
+			"listeningQuestions" => $listeningQuestions,
+			"startIndex" => $startIndex,
+			"title" => "Part III: Short Conversations",
+			"countDown" => $countDown,
+		]);
+	}
+
+	public function partFour(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerIds = $request->input("true_answer_part_three_ids");
+		try {
+			$startTest->true_answer_part_three_ids = $trueAnswerIds;
+			$startTest->part_three_score = $request->input('score');
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$ids = explode(",", $startTest->part_four_ids);
+		$listeningQuestions = Listening::whereIn("id", $ids)
+			->get();
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
+		return view('test.part_four', [
+			"listeningQuestions" => $listeningQuestions,
+			"startIndex" => $startIndex,
+			"countDown" => $countDown,
+			"title" => "Part IV: Short Talks"
+		]);
+	}
+		
+	public function partFive(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerIds = $request->input("true_answer_part_four_ids");
+		try {
+			$startTest->true_answer_part_four_ids = $trueAnswerIds;
+			$startTest->part_four_score = $request->input('score');
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$ids = explode(",", $startTest->part_five_ids);
+		$readingQuestions = Reading::whereIn("id", $ids)
+			->get();
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
 		return view('test.part_five', [
-			"partFiveQuestions" => $partFiveQuestions,
-			"startIndex" => $startIndex
+			"readingQuestions" => $readingQuestions,
+			"startIndex" => $startIndex,
+			"countDown" => $countDown,
 		]);
 	}
 
-	public function partSix() {
-		$partSixQuestions = Reading::where("part", ToeicPart::PART_SIX)
-			->inRandomOrder()
-			->limit(2)
+	public function partSix(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerIds = $request->input("true_answer_part_five_ids");
+		try {
+			$startTest->true_answer_part_five_ids = $trueAnswerIds;
+			$startTest->part_five_score = $request->input('score');
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$ids = explode(",", $startTest->part_six_ids);
+		$readingQuestions = Reading::whereIn("id", $ids)
 			->get();
-		$startIndex = 5;
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
 		return view('test.part_six', [
-			"partSixQuestions" => $partSixQuestions,
-			"startIndex" => $startIndex
+			"readingQuestions" => $readingQuestions,
+			"startIndex" => $startIndex,
+			"countDown" => $countDown,
 		]);
 	}
 
-	public function partSeven() {
-		$partSevenQuestions = Reading::where("part", ToeicPart::PART_SEVEN)
-			->inRandomOrder()
-			->limit(2)
+	public function partSeven(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerIds = $request->input("true_answer_part_six_ids");
+		try {
+			$startTest->true_answer_part_six_ids = $trueAnswerIds;
+			$startTest->part_six_score = $request->input('score');
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$ids = explode(",", $startTest->part_seven_ids);
+		$readingQuestions = Reading::whereIn("id", $ids)
 			->get();
-		$startIndex = 5;
+		$startIndex = $request->input("start_index");
+		$countDown = $request->input("count_down");
 		return view('test.part_seven', [
-			"partSevenQuestions" => $partSevenQuestions,
-			"startIndex" => $startIndex
+			"readingQuestions" => $readingQuestions,
+			"startIndex" => $startIndex,
+			"countDown" => $countDown,
 		]);
 	}
 
-	public function result() {
-		return view('test.result');
+	public function result(Request $request) {
+		$startTest = $request->session()->get('startTest');
+		if (empty($startTest)) {
+			return redirect()->route("home");
+		}
+		$trueAnswerIds = $request->input("true_answer_part_seven_ids");
+		try {
+			$startTest->true_answer_part_seven_ids = $trueAnswerIds;
+			$startTest->part_seven_score = $request->input('score');
+			$startTest->complete_flg = true;
+			$startTest->save();
+		} catch (\Throwable $th) {
+			return redirect()->route("home");
+		}
+
+		$request->session()->pull("startTest");
+		return view('test.result', [
+			"test" => $startTest
+		]);
 	}
 }

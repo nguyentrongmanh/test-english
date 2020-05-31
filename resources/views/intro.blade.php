@@ -41,7 +41,7 @@
 							<p><b>Reading: 15 phút</b></p>
 						</div>
 						<div class="text-center">
-							<a href="https://toeic24.vn/exam/shortened-init" class="btn-start mc-btn btn-style-6">BẮT
+							<a href="{{ route('test-part-one') }}" class="btn-start mc-btn btn-style-6">BẮT
 								ĐẦU</a>
 						</div>
 					</div>
