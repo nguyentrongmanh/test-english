@@ -1893,6 +1893,8 @@ select.form-control:focus::-ms-value {
     margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5;
+    text-align: right;
+    padding-right: 30px;
 }
 
 .col-form-label-lg {
@@ -4659,6 +4661,7 @@ input[type="button"].btn-block {
 
 .card-header:first-child {
     border-radius: calc(0.35rem - 1px) calc(0.35rem - 1px) 0 0;
+    padding-left: 45px;
 }
 
 .card-header + .list-group .list-group-item:first-child {
@@ -5152,8 +5155,9 @@ a.badge-dark.focus {
 
 .alert {
     position: relative;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
+    padding: 0.4rem 1.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 5px;
     border: 1px solid transparent;
     border-radius: 0.35rem;
 }
@@ -11453,4 +11457,32 @@ audio {
 }
 .w-100 {
     width: 120px !important;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.add-btn button {
+    width: 250px;
+}
+
+.btn-search {
+    margin-left: 16px;
+    margin-bottom: 0px;
+    margin-top: -8px;
+}
+
+.detail-value {
+    padding: 7px;
+}
+
+.w-80-percent {
+    width: 80% !important;
+}
+
+.admin-user-avatar {
+    width: 300px;
+    height: 300px;
 }

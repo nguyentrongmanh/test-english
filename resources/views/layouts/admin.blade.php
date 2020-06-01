@@ -39,25 +39,25 @@
 			</a>
 			<hr class="sidebar-divider my-0">
 			<li class="nav-item active">
-				<a class="nav-link" href="index.html">
+				<a class="nav-link" href="{{ route('admin-home') }}">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Người dùng</span></a>
 			</li>
 			<hr class="sidebar-divider">
 			<li class="nav-item active">
-				<a class="nav-link" href="index.html">
+				<a class="nav-link" href="{{ route('index-listening') }}">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Listening</span></a>
 			</li>
 			<hr class="sidebar-divider">
 			<li class="nav-item active">
-				<a class="nav-link" href="index.html">
+				<a class="nav-link" href="{{ route('index-reading') }}">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Reading</span></a>
 			</li>
 			<hr class="sidebar-divider d-none d-md-block">
 			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+				<button class="rounded-circle border-0 home" id="sidebarToggle"></button>
 			</div>
 
 		</ul>
@@ -91,5 +91,13 @@
 			</div>
 		</div>
 </body>
+
+<script>
+	$(document).ready(function() {
+		$(".home").on("click", function() {
+			window.location = baseLaravelUrl + "/home"
+		})
+	});
+</script>
 
 </html>

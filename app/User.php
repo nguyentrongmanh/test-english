@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', "company", "age", "phone", "address"
     ];
 
     /**
@@ -38,5 +39,9 @@ class User extends Authenticatable
 	];
 	public function getFormatCreated() {
 		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
+	}
+
+	public function tests() {
+		return $this->hasMany('App\Test');
 	}
 }

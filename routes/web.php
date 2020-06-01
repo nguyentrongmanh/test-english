@@ -31,7 +31,7 @@ Route::post('/test/part-seven', 'TestController@partSeven')->name('test-part-sev
 Route::post('/test/result', 'TestController@result')->name('test-result');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-	Route::get('/home', 'Admin\UsersController@index');
+	Route::get('/', 'Admin\UsersController@index')->name("admin-home");
 	// listening
 	Route::post('/listenings/create', 'Admin\ListeningsController@create')->name("create-listening");
 	Route::get('/listenings/create', 'Admin\ListeningsController@getCreate')->name("create-listening");
@@ -40,4 +40,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::get('/readings/create', 'Admin\ReadingsController@getCreate')->name("create-reading");
 	Route::get('/readings', 'Admin\ReadingsController@index')->name("index-reading");
 	Route::post('/readings/create', 'Admin\ReadingsController@create')->name("create-reading");
+	//users
+	Route::get('/users/create', 'Admin\UsersController@getCreate')->name("user-create");
+	Route::get('/users/edit/{id}', 'Admin\UsersController@getEdit');
+	Route::post('/users/create', 'Admin\UsersController@create')->name("user-create");
+	Route::post('/users/edit/{id}', 'Admin\UsersController@edit')->name("user-edit");
+	Route::get('/users/delete/{id}', 'Admin\UsersController@delete')->name("user-delete");
+	Route::get('/users/detail/{id}', 'Admin\UsersController@detail')->name("user-detail");
 });
