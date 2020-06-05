@@ -55,6 +55,12 @@
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Reading</span></a>
 			</li>
+			<hr class="sidebar-divider">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ route('index-classes') }}">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Classes</span></a>
+			</li>
 			<hr class="sidebar-divider d-none d-md-block">
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0 home" id="sidebarToggle"></button>

@@ -38,10 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
 	];
 	public function getFormatCreated() {
-		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
+		return Carbon::createFromFormat("Y-m-d H:i:s", $this->created_at)->format("Y-m-d");
 	}
 
 	public function tests() {
 		return $this->hasMany('App\Test');
 	}
+
+    public function classes() {
+        return $this->hasMany('App\Class');
+    }
 }

@@ -47,4 +47,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::post('/users/edit/{id}', 'Admin\UsersController@edit')->name("user-edit");
 	Route::get('/users/delete/{id}', 'Admin\UsersController@delete')->name("user-delete");
 	Route::get('/users/detail/{id}', 'Admin\UsersController@detail')->name("user-detail");
+	//classes
+	Route::get('/classes', 'Admin\ClassesController@index')->name("index-classes");
+	Route::get('/classes/add', 'Admin\ClassesController@add')->name("class-add");
+	Route::post('/classes/add', 'Admin\ClassesController@add')->name("class-add");
+	Route::get('/classes/edit/{id}', 'Admin\ClassesController@edit')->name("class-edit");
+	Route::post('/classes/edit/{id}', 'Admin\ClassesController@edit')->name("class-edit");
+	Route::get('/classes/detail/{id}', 'Admin\ClassesController@detail')->name("class-detail");
+	Route::get('/classes/delete/{id}', 'Admin\ClassesController@delete')->name("class-delete");
 });

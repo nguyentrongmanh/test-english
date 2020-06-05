@@ -48,7 +48,7 @@ class UsersController extends Controller
             return redirect()->back();
         }
 		$data = $request->all();
-		$data['email_verified_at'] = Carbon::now()->format("Y-m-d h:i:s");
+		$data['email_verified_at'] = Carbon::now()->format("Y-m-d H:i:s");
 		$data['password'] = Hash::make($data['password']);
 		try {
 			$user = User::create($data);
