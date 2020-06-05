@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/class', 'HomeController@class')->name('class');
 Route::get('/test/start', 'TestController@start')->name('test-start');
 Route::get('/test/part-one', 'TestController@partOne')->name('test-part-one');
 Route::post('/test/part-two', 'TestController@partTwo')->name('test-part-two');
@@ -29,6 +30,14 @@ Route::post('/test/part-five', 'TestController@partFive')->name('test-part-five'
 Route::post('/test/part-six', 'TestController@partSix')->name('test-part-six');
 Route::post('/test/part-seven', 'TestController@partSeven')->name('test-part-seven');
 Route::post('/test/result', 'TestController@result')->name('test-result');
+
+Route::get("/test/part-one-result/{testId}", "TestController@partOneResult");
+Route::get("/test/part-two-result/{testId}", "TestController@partTwoResult");
+Route::get("/test/part-three-result/{testId}", "TestController@partThreeResult");
+Route::get("/test/part-four-result/{testId}", "TestController@partFourResult");
+Route::get("/test/part-five-result/{testId}", "TestController@partFiveResult");
+Route::get("/test/part-six-result/{testId}", "TestController@partSixResult");
+Route::get("/test/part-seven-result/{testId}", "TestController@partSevenResult");
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::get('/', 'Admin\UsersController@index')->name("admin-home");
