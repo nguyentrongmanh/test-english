@@ -280,4 +280,52 @@ class TestController extends Controller {
 			"test" => $startTest
 		]);
 	}
+
+	public function partOneResult($id) {
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_one_ids);
+		$listenings = Listening::whereIn('id', $ids)
+			->get();
+			$startIndex = 1;
+		return view('test.part_one_result', [
+			"listenings" => $listenings,
+			"startIndex" => $startIndex
+		]);
+	}
+
+	public function partTwoResult($id) {
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_two_ids);
+		$listenings = Listening::whereIn('id', $ids)
+			->get();
+			$startIndex = 1;
+		return view('test.part_two_result', [
+			"listenings" => $listenings,
+			"startIndex" => $startIndex
+		]);
+	}
+
+	public function partThreeResult($id) {
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_three_ids);
+		$listenings = Listening::whereIn('id', $ids)
+			->get();
+			$startIndex = 1;
+		return view('test.part_three_result', [
+			"listenings" => $listenings,
+			"startIndex" => $startIndex
+		]);
+	}
 }
