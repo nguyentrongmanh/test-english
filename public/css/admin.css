@@ -11489,3 +11489,7 @@ audio {
 select#select-teacher {
     margin-left: 12px;
 }
+img#drop {
+    width: 100%;
+    object-fit: cover;
+}

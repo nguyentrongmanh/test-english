@@ -39,10 +39,19 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">
+					Main Image
+				</label>
+				<div class="col-sm-5">
+					<input id="main_image" name="image" type="file" />
+					<img id="drop" src="" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">
 					Target
 				</label>
 				<div class="col-sm-10">
-					<input class="form-control " name="target" placeholder="Target" type="text" />
+					<input class="form-control " name="target" placeholder="Target" type="number" />
 				</div>
 			</div>
 			<div class="form-group row">
@@ -58,7 +67,8 @@
 					Schedule
 				</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="schedule" placeholder="Schedule" type="text" />
+					<textarea class="form-control" name="schedule" placeholder="Schedule" 
+					rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -66,7 +76,8 @@
 					Description
 				</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="description" placeholder="Description" type="text" />
+					<textarea class="form-control" name="description" 
+					placeholder="Description" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -74,7 +85,7 @@
 					Total Number
 				</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="total_number" placeholder="Total Number" type="text" />
+					<input class="form-control" name="total_number" placeholder="Total Number" type="number" />
 				</div>
 			</div>
 			<div class="form-group row">
@@ -111,15 +122,7 @@
 						required />
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">
-					Main Image
-				</label>
-				<div class="col-sm-5">
-					<input id="main_image" name="image" type="file" />
-					<img id="drop" src="" />
-				</div>
-			</div>
+			
 	</div>
 	<div class="add-btn">
 		<button class="btn btn-primary" type="submit">

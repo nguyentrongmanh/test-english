@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes;
+use App\Enums\FileUploadPath;
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassFormRequest;
@@ -71,6 +72,11 @@ class ClassesController extends Controller
         $data['close_flg'] = 1;
         $data['start_date'] = Carbon::createFromFormat('Y-m-d', $data['start_date']);
         $data['end_date'] = Carbon::createFromFormat('Y-m-d', $data['end_date']);
+        // save image file to server
+        $image = $data['image'];
+        $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
+        $image->move(FileUploadPath::IMAGE, $imageName);
+        $data['image'] = $imageName;
         unset($data['_token']);
 
         try {
@@ -98,7 +104,6 @@ class ClassesController extends Controller
     public function edit(ClassFormRequest $request, $id)
     {
         $data = $request->all();
-        dd($data);
         $data['teacher_id'] = (int) $data['teacher_id'];
         $data['target'] = (int) $data['target'];
         $data['total_number'] = (int) $data['total_number'];
@@ -133,13 +138,9 @@ class ClassesController extends Controller
 
     public function detail($id)
     {
-        $users = User::select('id as user_id', 'name as teacher_name');
-        $classDetail = DB::table('classes')
-            ->joinSub($users, 'users', function ($join) {
-                $join->on('classes.teacher_id', '=', 'users.user_id');
-            })
-            ->where('id', $id)
-            ->first();
+        $classDetail = Classes::find($id);
+        $teacher = $classDetail->getTeacher($classDetail->teacher_id);
+
         return view('admin.classes.detail', [
             "class" => $classDetail,
         ]);
