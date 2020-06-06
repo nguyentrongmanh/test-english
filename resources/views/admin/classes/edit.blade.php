@@ -4,18 +4,18 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
-            Add new class
+            Edit class
         </h6>
     </div>
     <div class="card-body">
-        <form action="{{ route('class-add') }}" enctype="multipart/form-data" id="add-class-form" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('class-edit', ['id' => $class->id]) }} " enctype="multipart/form-data" id="edit-class-form" method="POST" class="needs-validation" novalidate>
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">
                     Name
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" type="text" required>
+                    <input class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" required="" type="text" value="{{ $class->name }}">
                     </input>
                     @error('name')
                     <div class="alert alert-danger">
@@ -29,9 +29,16 @@
                     Teacher
                 </label>
                 <select class="form-control col-sm-9" id="select-teacher" name="teacher_id">
-                    @foreach ($teachers as $teacher)
-                    <option value="{{ $teacher->id }}">
-                        {{ $teacher->name  }} - {{ $teacher->email }}
+                    @foreach ($teachers as $item)
+                    @php
+                        $selected = '';
+                        if($item->id == $teacherId)    // Any Id
+                        {
+                            $selected = 'selected="selected"';
+                        }
+                    @endphp
+                    <option value="{{ $item->id }}" {{$selected}}>
+                        {{ $item->name  }} - {{ $item->email }}
                     </option>
                     @endforeach
                 </select>
@@ -41,7 +48,7 @@
                     Target
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control " name="target" placeholder="Target" type="text">
+                    <input class="form-control" name="target" placeholder="Target" type="text" value="{{ $class->target }}">
                     </input>
                 </div>
             </div>
@@ -50,7 +57,7 @@
                     Address
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="address" placeholder="Address" type="text">
+                    <input class="form-control" name="address" placeholder="Address" type="text" value="{{ $class->address }}">
                     </input>
                 </div>
             </div>
@@ -59,7 +66,7 @@
                     Schedule
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="schedule" placeholder="Schedule" type="text">
+                    <input class="form-control" name="schedule" placeholder="Schedule" type="text" value="{{ $class->schedule }}">
                     </input>
                 </div>
             </div>
@@ -68,7 +75,7 @@
                     Description
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="description" placeholder="Description" type="text">
+                    <input class="form-control" name="description" placeholder="Description" type="text" value="{{ $class->description }}">
                     </input>
                 </div>
             </div>
@@ -77,7 +84,7 @@
                     Total Number
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="total_number" placeholder="Total Number" type="text">
+                    <input class="form-control" name="total_number" placeholder="Total Number" type="text" value="{{ $class->total_number }}">
                     </input>
                 </div>
             </div>
@@ -86,7 +93,7 @@
                     Fee
                 </label>
                 <div class="col-sm-5">
-                    <input class="form-control" name="fee" placeholder="Fee" type="number">
+                    <input class="form-control" name="fee" placeholder="Fee" type="number" value="{{ $class->fee }}">
                     </input>
                 </div>
             </div>
@@ -95,7 +102,7 @@
                     Register Number
                 </label>
                 <div class="col-sm-5">
-                    <input class="form-control" name="register_number" placeholder="Register Number" type="number">
+                    <input class="form-control" name="register_number" placeholder="Register Number" type="number" value="{{ $class->register_number }}">
                     </input>
                 </div>
             </div>
@@ -104,7 +111,7 @@
                     Start Date
                 </label>
                 <div class="col-sm-5">
-                    <input class="form-control" max="3000-12-31" min="1000-01-01" name="start_date" type="date" required>
+                    <input class="form-control" max="3000-12-31" min="1000-01-01" name="start_date" required="" type="date" value="{{ $class->start_date }}">
                     </input>
                 </div>
             </div>
@@ -113,7 +120,7 @@
                     End Date
                 </label>
                 <div class="col-sm-5">
-                    <input class="form-control" max="3000-12-31" min="1000-01-01" name="end_date" type="date" required>
+                    <input class="form-control" max="3000-12-31" min="1000-01-01" name="end_date" required="" type="date" value="{{ $class->end_date }}">
                     </input>
                 </div>
             </div>
@@ -126,9 +133,8 @@
     </div>
 </div>
 @endsection
-
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';
   window.addEventListener('load', function() {

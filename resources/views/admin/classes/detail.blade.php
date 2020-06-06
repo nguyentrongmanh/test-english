@@ -22,15 +22,45 @@ use Carbon\Carbon;
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Teacher Name</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->teacher_name }}
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Target</label>
 						<div class="col-sm-10 detail-value">
 							{{ $class->target }}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Teacher Name</label>
+						<label class="col-sm-2 col-form-label">Address</label>
 						<div class="col-sm-10 detail-value">
-							{{ $class->teacher_name }}
+							{{ $class->address }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Schedule</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->schedule }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Description</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->description }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Total Number</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->total_number }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Fee</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->fee }}
 						</div>
 					</div>
 					<div class="form-group row">
@@ -41,6 +71,18 @@ use Carbon\Carbon;
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Start Date</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->start_date }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">End Date</label>
+						<div class="col-sm-10 detail-value">
+							{{ $class->end_date }}
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Create At</label>
 						<div class="col-sm-10 detail-value">
 							{{ Carbon::createFromFormat("Y-m-d H:i:s", $class->created_at)->format("Y-m-d") }}
 						</div>

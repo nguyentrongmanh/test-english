@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\class;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClassAddRequest extends FormRequest
+class ClassFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,8 @@ class ClassAddRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [];
-        if ($this->isMethod('post')) {
-            $rules = [
-                'publish_flag' => 'required',
-                'description' => 'max:2000',
-            ];
-        }
-        return $rules;
+        return [
+            'name' => 'required',
+        ];
     }
 }
