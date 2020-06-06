@@ -11490,6 +11490,27 @@ select#select-teacher {
     margin-left: 12px;
 }
 img#drop {
-    width: 100%;
+    width: 300px;
+    height: 200px;
     object-fit: cover;
+}
+
+.drop-container {
+    width: 400px;
+    height: 250px;
+    border: 2px dashed #a4aba7;
+    border-radius: 5px;
+    background: #e6edf0;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+.drop-text {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.hidden {
+    display: none;
 }

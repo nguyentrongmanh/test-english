@@ -43,7 +43,10 @@
 				</label>
 				<div class="col-sm-5">
 					<input id="main_image" name="image" type="file" />
-					<img id="drop" src="" />
+					<div class="drop-container">
+						<img id="drop" class="hidden" />
+						<div class="drop-text">Drop files</div>
+					</div>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -67,8 +70,7 @@
 					Schedule
 				</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" name="schedule" placeholder="Schedule" 
-					rows="3"></textarea>
+					<textarea class="form-control" name="schedule" placeholder="Schedule" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -76,8 +78,7 @@
 					Description
 				</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" name="description" 
-					placeholder="Description" rows="3"></textarea>
+					<textarea class="form-control" name="description" placeholder="Description" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -122,7 +123,7 @@
 						required />
 				</div>
 			</div>
-			
+
 	</div>
 	<div class="add-btn">
 		<button class="btn btn-primary" type="submit">
@@ -139,7 +140,9 @@
 			fReader.readAsDataURL(event.target.files[0]);
 			fReader.onloadend = function(event){
 				var img = document.getElementById("drop");
-				img.src = event.target.result;
+				$("#drop").removeClass("hidden") 
+				$("#drop").attr("src", event.target.result)
+				$(".drop-text").addClass("hidden")
 			}
 		});
 	})
