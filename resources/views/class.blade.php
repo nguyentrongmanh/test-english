@@ -29,19 +29,19 @@
 					<article aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 						<img class="class-img" data="{{ url('/') }}">
 						<h4 class="class-name"></h4>
-						<p class_item_detail>
+						<p class="class_item_detail">
 							Description: <span class="class-description"></span>
 						</p>
-						<p class_item_detail>
+						<p class="class_item_detail">
 							Target: <span class="class-target"></span>
 						</p>
-						<p class_item_detail>
+						<p class="class_item_detail">
 							Schedule: <span class="class-schedule"></span>
 						</p>
-						<p class_item_detail>
+						<p class="class_item_detail">
 							Start Date: <span class="class-start-date"></span>
 						</p>
-						<p class_item_detail>
+						<p class="class_item_detail">
 							End Date: <span class="class-end-date"></span>
 						</p>
 						<div class="main-button">

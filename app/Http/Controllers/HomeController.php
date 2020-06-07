@@ -54,16 +54,17 @@ class HomeController extends Controller
         $teachingClassId = ClassRegister::where('user_id', $userId)
             ->pluck('class_id')->toArray();
         if (in_array($classId, $teachingClassId)) {
-            return redirect()->route('class')->with('error', __('error'));
+            return redirect()->route('home')->with('error', __('error'));
         }
         if ($classRegister->save()) {
             $classDetail = Classes::find($classId);
 			$classDetail->register_number += 1;
-			$classDetail->save();
             if ($classDetail->register_number >= $classDetail->total_number) {
-                $classDetail->close_flg = CloseFlag::FULL;
+				$classDetail->close_flg = CloseFlag::FULL;
             }
-            return redirect()->route('class')->with('success', __('success'));
-        }
+			$classDetail->save();
+            return redirect()->route('home')->with('success', __('success'));
+		}
+		return redirect()->route('home')->with('error', __('error'));
     }
 }
