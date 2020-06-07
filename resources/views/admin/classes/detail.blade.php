@@ -11,87 +11,24 @@ $class->image = $class->image ?? 'default_class_image.jpg';
 			<h6 class="m-0 font-weight-bold text-primary">Class infomation</h6>
 		</div>
 		<div class="card-body">
-			<div class="row">
-				<div class="col-sm-3">
-					<img class="admin-user-avatar" src="{{ url('image/' . $class->image) }}" />
-				</div>
-				<div class="col-sm-9">
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Name</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->name }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Teacher Name</label>
-						<div class="col-sm-10 detail-value">
-							{{ $teacher->name }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Target</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->target }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Address</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->address }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Schedule</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->schedule }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Description</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->description }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Total Number</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->total_number }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Fee</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->fee }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Register Number</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->register_number }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Start Date</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->start_date }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">End Date</label>
-						<div class="col-sm-10 detail-value">
-							{{ $class->end_date }}
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Create At</label>
-						<div class="col-sm-10 detail-value">
-							{{ Carbon::createFromFormat("Y-m-d H:i:s", $class->created_at)->format("Y-m-d") }}
-						</div>
-					</div>
-				</div>
+			<div class="">
+				<img class="class-image" src="{{ url('image/' . $class->image) }}" />
 			</div>
+			<ul class="list-group">
+				<li class="list-group-item">Class Name: {{ $class->name }}</li>
+				<li class="list-group-item">Teacher Name: {{ $class->teacher->name }}</li>
+				<li class="list-group-item">Target: {{ $class->target }} Toeic +</li>
+				<li class="list-group-item">Address: {{ $class->address }}</li>
+				<li class="list-group-item">Schedule: {{ $class->schedule }}</li>
+				<li class="list-group-item">Description: {{ $class->description }}</li>
+				<li class="list-group-item">Total Number: {{ $class->total_number }} students</li>
+				<li class="list-group-item">Register Number: {{ $class->register_number }} students</li>
+				<li class="list-group-item">Fee: {{ $class->fee }}</li>
+				<li class="list-group-item">Start Date: {{ $class->start_date }}</li>
+				<li class="list-group-item">End Date: {{ $class->end_date }}</li>
+				<li class="list-group-item">Create At: {{ $class->getFormatCreated() }}</li>
+			</ul>
 		</div>
 	</div>
-
 </div>
 @endsection

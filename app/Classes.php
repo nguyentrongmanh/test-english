@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use Carbon\Carbon;
 
 class Classes extends Model
 {
@@ -17,12 +17,10 @@ class Classes extends Model
     public function teacher()
     {
         return $this->belongsTo('App\User', 'teacher_id');
-    }
-
-    public function getTeacher($teacherId)
-    {
-        $teacher = User::find($teacherId);
-        return $teacher;
-    }
+	}
+	
+	public function getFormatCreated() {
+		return Carbon::createFromFormat("Y-m-d H:i:s", $this->created_at)->format("Y-m-d");
+	}
 
 }

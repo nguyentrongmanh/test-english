@@ -11522,4 +11522,8 @@ img.admin-user-avatar {
     width: 100%;
 }
 
-
+.class-image {
+    width: 80%;
+    height: 350px;
+    margin: 20px 0px;
+}

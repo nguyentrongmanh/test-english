@@ -142,11 +142,8 @@ class ClassesController extends Controller
     public function detail($id)
     {
         $classDetail = Classes::find($id);
-        $teacher = $classDetail->getTeacher($classDetail->teacher_id);
-
         return view('admin.classes.detail', [
             "class" => $classDetail,
-            "teacher" => $teacher,
         ]);
     }
 
