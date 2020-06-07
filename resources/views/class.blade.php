@@ -8,8 +8,6 @@
 			<div class="col-lg-6 offset-lg-3">
 				<div class="section-heading">
 					<h2>Our <em>Classes</em></h2>
-					<img src="assets/images/line-dec.png" alt="">
-					<p class="intro">Having a solid foundation knowledge after each lesson, increasing difficulty helps students keep up with the progress of the new TOEIC FORMAT test.</p>
 				</div>
 			</div>
 		</div>
@@ -89,25 +87,4 @@
 		})
 	});
 </script>
-
 @endsection
-
-@if (session('success'))
-<script type="text/javascript">
-	swal({
-		title: "Đăng ký thành công",
-		icon: "success",
-		button: "OK!",
-	});
-</script>
-@endif
-
-@if (session('error'))
-<script type="text/javascript">
-	swal({
-		title: "Bạn đã đăng ký lớp này rồi",
-		icon: "error",
-		dangerMode: true,
-	});
-</script>
-@endif

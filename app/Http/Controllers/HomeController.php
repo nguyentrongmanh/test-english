@@ -58,8 +58,9 @@ class HomeController extends Controller
         }
         if ($classRegister->save()) {
             $classDetail = Classes::find($classId);
-            $classDetail->register_number += 1;
-            if ($classDetail->register_number == $classDetail->total_number) {
+			$classDetail->register_number += 1;
+			$classDetail->save();
+            if ($classDetail->register_number >= $classDetail->total_number) {
                 $classDetail->close_flg = CloseFlag::FULL;
             }
             return redirect()->route('class')->with('success', __('success'));
