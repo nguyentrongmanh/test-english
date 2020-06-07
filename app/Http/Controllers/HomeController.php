@@ -33,8 +33,7 @@ class HomeController extends Controller
     function class ()
     {
         $classes = Classes::where('close_flg', CloseFlag::EMPTY)
-            ->limit(7)->get();
-
+            ->get();
         return view('class', [
             "classes" => $classes,
         ]);
