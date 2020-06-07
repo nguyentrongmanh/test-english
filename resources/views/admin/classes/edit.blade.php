@@ -37,7 +37,7 @@
                             $selected = 'selected="selected"';
                         }
                     @endphp
-                    <option value="{{ $item->id }}" {{$selected}}>
+                    <option value="{{ $item->id }}" {{ $selected }}>
                         {{ $item->name  }} - {{ $item->email }}
                     </option>
                     @endforeach
@@ -48,7 +48,7 @@
                     Target
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="target" placeholder="Target" type="text" value="{{ $class->target }}">
+                    <input class="form-control" name="target" placeholder="Target" type="number" value="{{ $class->target }}">
                     </input>
                 </div>
             </div>
@@ -66,8 +66,7 @@
                     Schedule
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="schedule" placeholder="Schedule" type="text" value="{{ $class->schedule }}">
-                    </input>
+                    <textarea class="form-control" name="schedule" placeholder="Schedule" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -75,8 +74,7 @@
                     Description
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="description" placeholder="Description" type="text" value="{{ $class->description }}">
-                    </input>
+                    <textarea class="form-control" name="description" placeholder="Description" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -84,7 +82,7 @@
                     Total Number
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control" name="total_number" placeholder="Total Number" type="text" value="{{ $class->total_number }}">
+                    <input class="form-control" name="total_number" placeholder="Total Number" type="number" value="{{ $class->total_number }}">
                     </input>
                 </div>
             </div>
@@ -126,7 +124,7 @@
             </div>
             <div class="add-btn">
                 <button class="btn btn-primary" type="submit">
-                    Add
+                    Edit
                 </button>
             </div>
         </form>

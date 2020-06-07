@@ -21,7 +21,7 @@ class Classes extends Model
 
     public function getTeacher($teacherId)
     {
-        $teacher = User::find($teacherId)->first();
+        $teacher = User::find($teacherId);
         return $teacher;
     }
 

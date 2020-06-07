@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @php
 use Carbon\Carbon;
+$class->image = $class->image ?? 'default_class_image.jpg';
 @endphp
 
 @section('content')
@@ -12,7 +13,7 @@ use Carbon\Carbon;
 		<div class="card-body">
 			<div class="row">
 				<div class="col-sm-3">
-					<img class="admin-user-avatar" src="{{ url('img/default_avatar.png') }}" />
+					<img class="admin-user-avatar" src="{{ url('image/' . $class->image) }}" />
 				</div>
 				<div class="col-sm-9">
 					<div class="form-group row">
@@ -24,7 +25,7 @@ use Carbon\Carbon;
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Teacher Name</label>
 						<div class="col-sm-10 detail-value">
-							{{ $class->teacher_name }}
+							{{ $teacher->name }}
 						</div>
 					</div>
 					<div class="form-group row">

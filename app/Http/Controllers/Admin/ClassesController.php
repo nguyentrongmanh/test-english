@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes;
+use App\Enums\CloseFlag;
 use App\Enums\FileUploadPath;
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
@@ -69,14 +70,16 @@ class ClassesController extends Controller
         $data['total_number'] = (int) $data['total_number'];
         $data['fee'] = (int) $data['fee'];
         $data['register_number'] = (int) $data['register_number'];
-        $data['close_flg'] = 1;
+        $data['close_flg'] = CloseFlag::EMPTY;
         $data['start_date'] = Carbon::createFromFormat('Y-m-d', $data['start_date']);
         $data['end_date'] = Carbon::createFromFormat('Y-m-d', $data['end_date']);
         // save image file to server
-        $image = $data['image'];
-        $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
-        $image->move(FileUploadPath::IMAGE, $imageName);
-        $data['image'] = $imageName;
+        if (isset($data['image'])) {
+            $image = $data['image'];
+            $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
+            $image->move(FileUploadPath::IMAGE, $imageName);
+            $data['image'] = $imageName;
+        }
         unset($data['_token']);
 
         try {
@@ -109,7 +112,7 @@ class ClassesController extends Controller
         $data['total_number'] = (int) $data['total_number'];
         $data['fee'] = (int) $data['fee'];
         $data['register_number'] = (int) $data['register_number'];
-        $data['close_flg'] = 1;
+        $data['close_flg'] = CloseFlag::EMPTY;
         $data['start_date'] = Carbon::createFromFormat('Y-m-d', $data['start_date']);
         $data['end_date'] = Carbon::createFromFormat('Y-m-d', $data['end_date']);
         unset($data['_token']);
@@ -143,6 +146,7 @@ class ClassesController extends Controller
 
         return view('admin.classes.detail', [
             "class" => $classDetail,
+            "teacher" => $teacher,
         ]);
     }
 

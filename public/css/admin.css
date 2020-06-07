@@ -11486,9 +11486,11 @@ audio {
     width: 300px;
     height: 300px;
 }
+
 select#select-teacher {
     margin-left: 12px;
 }
+
 img#drop {
     width: 300px;
     height: 200px;
@@ -11514,3 +11516,10 @@ img#drop {
 .hidden {
     display: none;
 }
+
+img.admin-user-avatar {
+    object-fit: cover;
+    width: 100%;
+}
+
+

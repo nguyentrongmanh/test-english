@@ -1307,3 +1307,22 @@ responsive
     font-size: 30px;
     margin-right: 20px;
 }
+
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom .main-button {
+    text-align: center;
+}
+
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom .class_item_detail{
+    font-size: 17px;
+    font-weight: 700;
+    color: #ed563b;
+}
+
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom h4{
+    font-size: 30px;
+    text-align: center;
+}
+section .tabs-content {
+    width: 100%;
+}
+
