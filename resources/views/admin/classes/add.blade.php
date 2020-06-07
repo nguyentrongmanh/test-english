@@ -29,13 +29,15 @@
 				<label class="col-sm-2 col-form-label">
 					Teacher
 				</label>
-				<select class="form-control col-sm-9" id="select-teacher" name="teacher_id">
-					@foreach ($teachers as $teacher)
-					<option value="{{ $teacher->id }}">
-						{{ $teacher->name  }} - {{ $teacher->email }}
-					</option>
-					@endforeach
-				</select>
+				<div class="col-sm-10">
+					<select class="form-control" name="teacher_id">
+						@foreach ($teachers as $teacher)
+						<option value="{{ $teacher->id }}">
+							{{ $teacher->name  }} - {{ $teacher->email }}
+						</option>
+						@endforeach
+					</select>
+				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">

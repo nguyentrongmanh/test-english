@@ -11462,6 +11462,7 @@ audio {
 .add-btn {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .add-btn button {
