@@ -9,8 +9,7 @@
 				<div class="section-heading">
 					<h2>Our <em>Classes</em></h2>
 					<img src="assets/images/line-dec.png" alt="">
-					<p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies
-						fermentum massa consequat eu.</p>
+					<p class="intro">Having a solid foundation knowledge after each lesson, increasing difficulty helps students keep up with the progress of the new TOEIC FORMAT test.</p>
 				</div>
 			</div>
 		</div>
@@ -30,16 +29,25 @@
 			<div class="col-lg-8">
 				<section class="tabs-content">
 					<article aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-						<img src="{{ url('img/class.jpg') }}" alt="First Class">
+						<img class="class-img" data="{{ url('/') }}">
 						<h4 class="class-name"></h4>
-						<p>
+						<p class_item_detail>
 							Description: <span class="class-description"></span>
 						</p>
-						<p>
+						<p class_item_detail>
 							Target: <span class="class-target"></span>
 						</p>
+						<p class_item_detail>
+							Schedule: <span class="class-schedule"></span>
+						</p>
+						<p class_item_detail>
+							Start Date: <span class="class-start-date"></span>
+						</p>
+						<p class_item_detail>
+							End Date: <span class="class-end-date"></span>
+						</p>
 						<div class="main-button">
-							<a href="#">Đăng Ký lớp</a>
+							<a class="register-button">Register now</a>
 						</div>
 					</article>
 				</section>
@@ -50,10 +58,22 @@
 
 <script>
 	$(document).ready(function() {
-		
 		const classList = {!! json_encode($classes) !!};
 		var selectedClass = classList[0];
-		
+		var showClassDetail = function(){
+			var src = selectedClass.image ? selectedClass.image : 'default_class_image.jpg'
+			baseURL = $(".class-img").attr("data")
+			src = baseURL + '/image/'+ src
+			$(".class-img").attr("src", src)
+			$(".class-name").html(selectedClass.name)
+			$(".class-description").html(selectedClass.description)
+			$(".class-target").html(selectedClass.target)
+			$(".class-schedule").html(selectedClass.schedule)
+			$(".class-start-date").html(selectedClass.start_date)
+			$(".class-end-date").html(selectedClass.end_date)
+		}
+		showClassDetail();
+
 		$(".class-link").on("click", function(e) {
 			e.preventDefault();
 			const classIndex = $(this).attr("data-index")
@@ -63,13 +83,31 @@
 			showClassDetail();
 		})
 
-		var showClassDetail = function(){
-			$(".class-name").html(selectedClass.name)
-			$(".class-description").html(selectedClass.description)
-			$(".class-target").html(selectedClass.target)
-		}
-		showClassDetail();
+		$(".main-button").on("click", function() {
+			classId = selectedClass.id
+			window.location = baseURL + "/class/register?id=" + classId
+		})
 	});
 </script>
 
 @endsection
+
+@if (session('success'))
+<script type="text/javascript">
+	swal({
+		title: "Đăng ký thành công",
+		icon: "success",
+		button: "OK!",
+	});
+</script>
+@endif
+
+@if (session('error'))
+<script type="text/javascript">
+	swal({
+		title: "Bạn đã đăng ký lớp này rồi",
+		icon: "error",
+		dangerMode: true,
+	});
+</script>
+@endif

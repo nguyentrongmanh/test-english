@@ -33,7 +33,7 @@
 					<label style="display: flex; justify-content: flex-end;">
 						Search by email:<input type="search" name="search"
 							class="table-search form-control form-control-sm" placeholder="" aria-controls="dataTable">
-						<button class="btn btn-primary btn-search">Search</button>
+						main-button
 					</label>
 				</div>
 			</div>

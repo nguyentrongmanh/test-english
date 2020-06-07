@@ -17,7 +17,6 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="{{ url('css/admin.css') }}" rel="stylesheet">
-	<link href="{{ url('css/quill.css') }}" rel="stylesheet">
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ url('js/quill.js') }}"></script>
 	<script src="{{ url('js/sweetalert.min.js') }}"></script>

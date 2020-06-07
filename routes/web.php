@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/class', 'HomeController@class')->name('class');
+Route::get('/class/register', 'HomeController@register')->name('class-register')
+	->middleware('auth');
 Route::get('/test/start', 'TestController@start')->name('test-start');
 Route::get('/test/part-one', 'TestController@partOne')->name('test-part-one');
 Route::post('/test/part-two', 'TestController@partTwo')->name('test-part-two');

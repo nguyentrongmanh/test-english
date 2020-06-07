@@ -19,8 +19,11 @@
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+	<link href="{{ url('css/sweetalert.min.css') }}" rel="stylesheet">
+	<link href="{{ url('css/quill.css') }}" rel="stylesheet">
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/home.js') }}"></script>
+	<script src="{{ url('js/sweetalert.min.js') }}"></script>
 </head>
 
 <body>
