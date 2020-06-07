@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File; 
 
 class ClassesController extends Controller
 {
@@ -94,11 +95,9 @@ class ClassesController extends Controller
     public function getEdit($id)
     {
         $classDetail = Classes::find($id);
-        $teacherId = $classDetail->teacher_id;
         $teachers = User::where('role', UserRole::ADMIN)->get();
 
         return view('admin.classes.edit', [
-            'teacherId' => $teacherId,
             'teachers' => $teachers,
             'class' => $classDetail,
         ]);
@@ -111,14 +110,23 @@ class ClassesController extends Controller
         $data['target'] = (int) $data['target'];
         $data['total_number'] = (int) $data['total_number'];
         $data['fee'] = (int) $data['fee'];
-        $data['register_number'] = (int) $data['register_number'];
         $data['close_flg'] = CloseFlag::EMPTY;
         $data['start_date'] = Carbon::createFromFormat('Y-m-d', $data['start_date']);
         $data['end_date'] = Carbon::createFromFormat('Y-m-d', $data['end_date']);
-        unset($data['_token']);
+		unset($data['_token']);
+		
+		$class = Classes::find($id);
+		if ($request->file('image') != null) {
+            $image = $request->file('image');
+            $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
+            $image->move(FileUploadPath::IMAGE, $imageName);
+			$data['image'] = $imageName;
+			if ($class->image != null) {
+				File::delete(public_path('image/' . $class->image));
+			}
+        }
 
         try {
-            $class = Classes::find($id);
             $class->name = $data['name'];
             $class->teacher_id = $data['teacher_id'];
             $class->target = $data['target'];
@@ -127,10 +135,10 @@ class ClassesController extends Controller
             $class->description = $data['description'];
             $class->total_number = $data['total_number'];
             $class->fee = $data['fee'];
-            $class->register_number = $data['register_number'];
             $class->start_date = $data["start_date"];
             $class->end_date = $data["end_date"];
             $class->close_flg = $data["close_flg"];
+            $class->image = $data["image"];
             $class->save();
         } catch (\Exception $e) {
             Log::info($e);
