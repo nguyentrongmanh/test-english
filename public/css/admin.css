@@ -11527,4 +11527,5 @@ img.admin-user-avatar {
     width: 80%;
     height: 350px;
     margin: 20px 0px;
+    object-fit: cover;
 }

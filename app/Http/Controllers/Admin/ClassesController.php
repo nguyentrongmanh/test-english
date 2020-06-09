@@ -12,8 +12,8 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\File; 
 
 class ClassesController extends Controller
 {
@@ -150,8 +150,13 @@ class ClassesController extends Controller
     public function detail($id)
     {
         $classDetail = Classes::find($id);
+        $teacher = $classDetail->getTeacher($classDetail->teacher_id);
+        $students = $classDetail->users;
+
         return view('admin.classes.detail', [
             "class" => $classDetail,
+            "teacher" => $teacher,
+            "students" => $students,
         ]);
     }
 
