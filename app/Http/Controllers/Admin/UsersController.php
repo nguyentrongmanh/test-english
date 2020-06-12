@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\FileUploadPath;
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserValidator;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class UsersController extends Controller
 {
@@ -50,6 +52,12 @@ class UsersController extends Controller
 		$data = $request->all();
 		$data['email_verified_at'] = Carbon::now()->format("Y-m-d H:i:s");
 		$data['password'] = Hash::make($data['password']);
+		if (isset($data['image'])) {
+            $image = $data['image'];
+            $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
+            $image->move(FileUploadPath::IMAGE, $imageName);
+            $data['image'] = $imageName;
+        }
 		try {
 			$user = User::create($data);
 		} catch (\Exception $e) {
@@ -81,6 +89,15 @@ class UsersController extends Controller
 		unset($data['_token']);
 		try {
 			$user = User::find($id);
+			if ($request->file('image') != null) {
+				$image = $request->file('image');
+				$imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
+				$image->move(FileUploadPath::IMAGE, $imageName);
+				if ($user->image != null) {
+					File::delete(public_path('image/' . $user->image));
+				}
+				$user->image = $imageName;
+			}
 			$user->name = $data['name'];
 			$user->age = $data["age"];
 			$user->address = $data["address"];

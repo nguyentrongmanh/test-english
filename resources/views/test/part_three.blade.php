@@ -55,7 +55,7 @@
 										name="question_{{$question->id}}" value="A">
 									<label for="question_{{$question->id}}1">
 										<i class="icon icon_radio"></i>
-										A
+										A . {{ $question->option_a }}
 									</label>
 								</li>
 								<li>
@@ -63,7 +63,7 @@
 										name="question_{{$question->id}}" value="B">
 									<label for="question_{{$question->id}}2">
 										<i class="icon icon_radio"></i>
-										B
+										B . {{ $question->option_b }}
 									</label>
 								</li>
 								<li>
@@ -71,7 +71,15 @@
 										name="question_{{$question->id}}" value="C">
 									<label for="question_{{$question->id}}3">
 										<i class="icon icon_radio"></i>
-										C
+										C . {{ $question->option_a }}
+									</label>
+								</li>
+								<li>
+									<input id="question_{{$question->id}}4" type="radio" data-id="{{$question->id}}"
+										name="question_{{$question->id}}" value="D">
+									<label for="question_{{$question->id}}4">
+										<i class="icon icon_radio"></i>
+										D . {{ $question->option_d }}
 									</label>
 								</li>
 							</ul>

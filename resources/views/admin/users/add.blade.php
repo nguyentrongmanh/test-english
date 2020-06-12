@@ -39,6 +39,18 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">
+					Avatar
+				</label>
+				<div class="col-sm-5">
+					<input id="main_image" name="image" type="file" />
+					<div class="drop-container">
+						<img id="drop" class="hidden" />
+						<div class="drop-text">Drop files</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Address</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="address" placeholder="Address">
@@ -93,4 +105,19 @@
 		</form>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function () {
+		$("input[type=file]").on("change", function(event) {
+			var fReader = new FileReader();
+			fReader.readAsDataURL(event.target.files[0]);
+			fReader.onloadend = function(event){
+				var img = document.getElementById("drop");
+				$("#drop").removeClass("hidden") 
+				$("#drop").attr("src", event.target.result)
+				$(".drop-text").addClass("hidden")
+			}
+		});
+	})
+</script>
 @endsection

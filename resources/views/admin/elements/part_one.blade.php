@@ -52,6 +52,9 @@
 				</tr>
 			</tfoot>
 			<tbody>
+				@if (empty($listeningQuestions))
+				<img src="{{ url('img/non_data.PNG') }}" />
+				@else
 				@foreach ($listeningQuestions as $questionPartOne)
 				<tr>
 					<td style="width: 20px">{{ $questionPartOne->id }}</td>
@@ -91,6 +94,7 @@
 					</td>
 				</tr>
 				@endforeach
+				@endif
 			</tbody>
 		</table>
 		{{ $listeningQuestions->links() }}

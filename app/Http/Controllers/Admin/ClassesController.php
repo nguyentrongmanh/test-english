@@ -120,10 +120,10 @@ class ClassesController extends Controller
             $image = $request->file('image');
             $imageName = "image_" . md5(time()) . "." . $image->getClientOriginalExtension();
             $image->move(FileUploadPath::IMAGE, $imageName);
-			$data['image'] = $imageName;
 			if ($class->image != null) {
 				File::delete(public_path('image/' . $class->image));
 			}
+            $class->image = $imageName;
         }
 
         try {
@@ -138,7 +138,6 @@ class ClassesController extends Controller
             $class->start_date = $data["start_date"];
             $class->end_date = $data["end_date"];
             $class->close_flg = $data["close_flg"];
-            $class->image = $data["image"];
             $class->save();
         } catch (\Exception $e) {
             Log::info($e);
