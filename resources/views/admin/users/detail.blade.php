@@ -8,8 +8,15 @@
 		</div>
 		<div class="card-body">
 			<div class="row">
+				@php
+				if ($user->image == null) {
+				$avatarSrc = url('img/default_avatar.jpg');
+				} else {
+				$avatarSrc = url('image/' . $user->image);
+				}
+				@endphp
 				<div class="col-sm-3">
-					<img class="admin-user-avatar" src="{{ url('img/default_avatar.png') }}" />
+					<img class="admin-user-avatar" src="{{ $avatarSrc }}" />
 				</div>
 				<div class="col-sm-9">
 					<div class="form-group row">
