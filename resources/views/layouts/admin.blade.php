@@ -17,7 +17,6 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="{{ url('css/admin.css') }}" rel="stylesheet">
-	<link href="{{ url('css/quill.css') }}" rel="stylesheet">
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ url('js/quill.js') }}"></script>
 	<script src="{{ url('js/sweetalert.min.js') }}"></script>
@@ -54,6 +53,12 @@
 				<a class="nav-link" href="{{ route('index-reading') }}">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Reading</span></a>
+			</li>
+			<hr class="sidebar-divider">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ route('index-classes') }}">
+					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Classes</span></a>
 			</li>
 			<hr class="sidebar-divider d-none d-md-block">
 			<div class="text-center d-none d-md-inline">

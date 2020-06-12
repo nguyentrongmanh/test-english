@@ -17,10 +17,12 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/class', 'HomeController@class')->name('class');
+Route::get('/class/register', 'HomeController@register')->name('class-register')
+	->middleware('auth');
 Route::get('/test/start', 'TestController@start')->name('test-start');
 Route::get('/test/part-one', 'TestController@partOne')->name('test-part-one');
 Route::post('/test/part-two', 'TestController@partTwo')->name('test-part-two');
@@ -56,4 +58,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::post('/users/edit/{id}', 'Admin\UsersController@edit')->name("user-edit");
 	Route::get('/users/delete/{id}', 'Admin\UsersController@delete')->name("user-delete");
 	Route::get('/users/detail/{id}', 'Admin\UsersController@detail')->name("user-detail");
+	//classes
+	Route::get('/classes', 'Admin\ClassesController@index')->name("index-classes");
+	Route::get('/classes/add', 'Admin\ClassesController@getAdd')->name("class-add");
+	Route::post('/classes/add', 'Admin\ClassesController@add')->name("class-add");
+	Route::get('/classes/edit/{id}', 'Admin\ClassesController@getEdit')->name("class-edit");
+	Route::post('/classes/edit/{id}', 'Admin\ClassesController@edit')->name("class-edit");
+	Route::get('/classes/detail/{id}', 'Admin\ClassesController@detail')->name("class-detail");
+	Route::get('/classes/delete/{id}', 'Admin\ClassesController@delete')->name("class-delete");
 });

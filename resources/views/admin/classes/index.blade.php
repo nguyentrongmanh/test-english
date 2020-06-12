@@ -1,7 +1,10 @@
 @extends('layouts.admin')
+@php
+	use Carbon\Carbon;
+@endphp
 
 @section('content')
-<a style="margin: 15px;" href="{{ url('/admin/users/create') }}" class="btn btn-success btn-icon-split">
+<a style="margin: 15px;" href="{{ url('/admin/classes/add') }}" class="btn btn-success btn-icon-split">
 	<span class="icon text-white-50">
 		<i class="fas fa-plus"></i>
 	</span>
@@ -9,7 +12,7 @@
 </a>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">Members list</h6>
+		<h6 class="m-0 font-weight-bold text-primary">Classes list</h6>
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -31,9 +34,9 @@
 			<div class="col-sm-12 col-md-6">
 				<div id="dataTable_filter" class="dataTables_filter">
 					<label style="display: flex; justify-content: flex-end;">
-						Search by email:<input type="search" name="search"
+						Search by teacher name:<input type="search" name="search"
 							class="table-search form-control form-control-sm" placeholder="" aria-controls="dataTable">
-						main-button
+						<button class="btn btn-primary btn-search">Search</button>
 					</label>
 				</div>
 			</div>
@@ -44,11 +47,10 @@
 					<tr>
 						<th style="width: 20px">ID</th>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Age</th>
-						<th>Phone</th>
-						<th>Company</th>
-						<th>Role</th>
+						<th>Target</th>
+						<th>Teacher Name</th>
+						<th>Register Number</th>
+						<th>Start Date</th>
 						<th class="w-100">Created</th>
 						<th>Action</th>
 					</tr>
@@ -57,26 +59,26 @@
 					<tr>
 						<th style="width: 20px">ID</th>
 						<th>Name</th>
-						<th>Email</th>
-						<th>Age</th>
-						<th>Phone</th>
-						<th>Company</th>
-						<th>Role</th>
+						<th>Target</th>
+						<th>Teacher Name</th>
+						<th>Register Number</th>
+						<th>Start Date</th>
 						<th class="w-100">Created</th>
 						<th>Action</th>
 					</tr>
 				</tfoot>
 				<tbody>
-					@foreach ($users as $user)
+					@foreach ($classes as $class)
 					<tr style="width: 20px">
-						<td>{{ $user->id }}</td>
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->email }}</td>
-						<td>{{ $user->age }}</td>
-						<td>{{ $user->phone }}</td>
-						<td>{{ $user->company }}</td>
-						<td>{{ $user->role == 1  ? __("ADMIN") : __("USER")}}</td>
-						<th class="w-100">{{ $user->getFormatCreated() }}</td>
+						<td>{{ $class->id }}</td>
+						<td>{{ $class->name }}</td>
+						<td>{{ $class->target }}</td>
+						<td>{{ $class->teacher_name }}</td>
+						<td>{{ $class->register_number }}</td>
+						<td>{{ $class->start_date }}</td>
+						<td class="w-100">
+							{{ Carbon::createFromFormat("Y-m-d H:i:s", $class->created_at)->format("Y-m-d") }}
+						</td>
 						<td style="width: 50px">
 							<div class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -84,15 +86,15 @@
 									Actions
 								</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<div class="dropdown-item"><a href="{{ url('admin/users/delete/' . $user->id) }}"
+									<div class="dropdown-item"><a href="{{ url('admin/classes/delete/' . $class->id) }}"
 											class="btn btn-sm btn-circle">
 											<i class="fas fa-trash" style="margin-right: 10px;"></i> Delete
 										</a></div>
-									<div class="dropdown-item"> <a href="{{ url('admin/users/detail/' . $user->id) }}"
+									<div class="dropdown-item"> <a href="{{ url('admin/classes/detail/' . $class->id) }}"
 											class="btn btn-sm btn-circle">
 											<i class="fas fa-book" style="margin-right: 10px;"></i> Detail
 										</a></div>
-									<div class="dropdown-item"> <a href="{{ url('admin/users/edit/' . $user->id) }}"
+									<div class="dropdown-item"> <a href="{{ url('admin/classes/edit/' . $class->id) }}"
 											class="btn btn-sm btn-circle">
 											<i class="fas fa-user-edit" style="margin-right: 10px;"></i> Edit
 										</a></div>
@@ -103,7 +105,6 @@
 					@endforeach
 				</tbody>
 			</table>
-			{{ $users->links() }}
 		</div>
 	</div>
 </div>
@@ -113,12 +114,12 @@
 		$("select[name=dataTable_length]").val(defaultLimit);
 		$("select[name=dataTable_length]").on("change", function(e) {
 			const limit = e.target.value
-			window.location = baseLaravelUrl + "/admin?limit=" + limit
+			window.location = baseLaravelUrl + "/admin/classes?limit=" + limit
 		});
 
 		$(".btn-search").on("click", function() {
 			const search = $("input[name=search]").val()
-			window.location = baseLaravelUrl + "/admin?limit=" + defaultLimit + "&search=" + search
+			window.location = baseLaravelUrl + "/admin/classes?limit=" + defaultLimit + "&search=" + search
 		})
 	});
 </script>

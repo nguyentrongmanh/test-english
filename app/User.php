@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -38,10 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
 	];
 	public function getFormatCreated() {
-		return Carbon::createFromFormat("Y-m-d h:i:s", $this->created_at)->format("Y-m-d");
+		return Carbon::createFromFormat("Y-m-d H:i:s", $this->created_at)->format("Y-m-d");
 	}
 
 	public function tests() {
 		return $this->hasMany('App\Test');
 	}
+
+    public function classes() {
+        return $this->belongsToMany('App\Classes', 'class_registers', 'user_id');
+    }
 }

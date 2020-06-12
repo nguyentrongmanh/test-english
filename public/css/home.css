@@ -1307,3 +1307,34 @@ responsive
     font-size: 30px;
     margin-right: 20px;
 }
+
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom .main-button {
+    text-align: center;
+}
+
+.tabs-content p {
+    font-size: 17px;
+    color: #ed563b;
+}
+
+.tabs-content p span {
+    font-size: 16px;
+    color: #7a7a7a;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom h4.class-name {
+    font-size: 30px;
+    text-align: center;
+}
+section .tabs-content {
+    width: 100%;
+}
+#our-classes .section-heading p.intro {
+    font-size: 16px;
+}
+
+.hidden {
+    display: none !important;
+}

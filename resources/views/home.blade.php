@@ -146,4 +146,24 @@
 		</div>
 	</div>
 </section>
+
+@if (session('success'))
+<script type="text/javascript">
+	swal({
+		title: "Đăng ký thành công",
+		icon: "success",
+		button: "OK!",
+	});
+</script>
+@endif
+
+@if (session('error'))
+<script type="text/javascript">
+	swal({
+		title: "Bạn đã đăng ký lớp này rồi",
+		icon: "error",
+		dangerMode: true,
+	});
+</script>
+@endif
 @endsection
