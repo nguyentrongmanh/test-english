@@ -80,17 +80,17 @@
 			@foreach ($user->tests as $test )
 			<h4>Test result : {{ $test->getFormatCreated() }}</h4>
 			<h4 class="w-80-percent small font-weight-bold">Listening Score <span
-					class="float-right">{{ $test->listening_score }}/100</span></h4>
+					class="float-right">{{ $test->getListeningScore() }}/100</span></h4>
 			<div class="w-80-percent progress mb-4">
-				<div class="progress-bar" role="progressbar" style="width: {{ $test->listening_score }}%"
-					aria-valuenow="{{ $test->listening_score }}" aria-valuemin="0" aria-valuemax="100"></div>
+				<div class="progress-bar" role="progressbar" style="width: {{ $test->getListeningScore() }}%"
+					aria-valuenow="{{ $test->getListeningScore() }}" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 			<h4 class="w-80-percent small font-weight-bold">Reading Score <span
-					class="float-right">{{ $test->reading_score }}/100</span>
+					class="float-right">{{ $test->getReadingScore() }}/100</span>
 			</h4>
 			<div class="w-80-percent progress mb-4" style="margin-bottom: 30px;">
-				<div class="progress-bar bg-info" role="progressbar" style="width: {{ $test->reading_score }}%"
-					aria-valuenow="{{ $test->reading_score }}" aria-valuemin="0" aria-valuemax="100"></div>
+				<div class="progress-bar bg-info" role="progressbar" style="width: {{ $test->getReadingScore() }}%"
+					aria-valuenow="{{ $test->getReadingScore() }}" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 			<hr />
 			@endforeach
