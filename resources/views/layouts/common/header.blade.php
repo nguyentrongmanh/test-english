@@ -17,7 +17,7 @@
 						<li class="main-button"><a href="{{ url('register') }}">Sign Up</a></li>
 						@else
 						@if ($currentUser->role == 1)
-						<li class="scroll-to-section"><a href="{{ url('admin')}}">Admin</a></li>
+						<li class="scroll-to-section"><a href="{{ url('/admin')}}">Admin</a></li>
 						@endif
 						<li class="main-button"><a href="{{ url('logout') }}">Log Out</a></li>
 						@endif

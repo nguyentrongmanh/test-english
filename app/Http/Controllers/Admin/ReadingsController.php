@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\ToeicPart;
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Question;
 use App\Reading;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ReadingsController extends Controller {
 	/**
@@ -16,8 +18,14 @@ class ReadingsController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		
 		$this->middleware('auth');
+		$this->middleware(function ($request, $next) {
+			$userRole = Auth::user()->role;
+			if ($userRole != UserRole::ADMIN) {
+				return redirect()->route("home");
+			}
+			return $next($request);
+		});
 	}
 
 	/**

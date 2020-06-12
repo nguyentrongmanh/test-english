@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\ToeicPart;
 use App\Enums\FileUploadPath;
+use App\Enums\ToeicPart;
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Listening;
 use App\Question;
@@ -18,6 +19,13 @@ class ListeningsController extends Controller {
 	 */
 	public function __construct() {
 		$this->middleware('auth');
+		$this->middleware(function ($request, $next) {
+			$userRole = Auth::user()->role;
+			if ($userRole != UserRole::ADMIN) {
+				return redirect()->route("home");
+			}
+			return $next($request);
+		});
 	}
 
 	/**
