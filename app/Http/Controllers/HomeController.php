@@ -8,7 +8,8 @@ use App\ClassRegister;
 use App\Enums\CloseFlag;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+		$currentUser = $this->get_login_user();
+		// dd($currentUser);
+    	View::share('currentUser', $currentUser);
         // $this->middleware('auth');
     }
 

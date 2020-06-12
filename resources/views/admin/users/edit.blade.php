@@ -54,6 +54,13 @@
 						placeholder="Phone">
 				</div>
 			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Intro</label>
+				<div class="col-sm-5">
+					<textarea class="form-control" value="{{ $user->intro }}" name="intro" placeholder="Introduce"
+						rows="3"></textarea>
+				</div>
+			</div>
 			<fieldset class="form-group">
 				<div class="row">
 					<legend class="col-form-label col-sm-2 pt-0">Role</legend>

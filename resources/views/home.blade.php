@@ -128,8 +128,8 @@
 					</div>
 					<div class="down-content">
 						<h4>{{ $teacher->name }}</h4>
-						<p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan
-							church-key pour-over seitan flannel.</p>
+						<p>{{ $teacher->intro ?? "Trên 5 năm kinh nghiệm luyện thi TOEIC, IELTS. Đạt 990/990 TOEIC , 8.5 IELTS. Thạc sĩ trường Leeds Metropolitan của
+						Vương Quốc Anh." }}</p>
 						<ul class="social-icons">
 							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
 							<li><a href="#"><i class="fab fa-twitter"></i></a></li>

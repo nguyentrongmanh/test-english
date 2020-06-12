@@ -49,6 +49,12 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Intro</label>
+						<div class="col-sm-10 detail-value">
+							{{ $user->intro }}
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Role</label>
 						<div class="col-sm-10 detail-value">
 							{{ $user->role == 0 ? 'USER' : 'ADMIN' }}

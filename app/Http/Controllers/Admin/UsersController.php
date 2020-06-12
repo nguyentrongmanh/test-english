@@ -86,6 +86,7 @@ class UsersController extends Controller
 			$user->address = $data["address"];
 			$user->phone = $data["phone"];
 			$user->company = $data["company"];
+			$user->intro = $data["intro"];
 			$user->role = $data["role"];
 			$user->save();
 		} catch (\Exception $e) {
