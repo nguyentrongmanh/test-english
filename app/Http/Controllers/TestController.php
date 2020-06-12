@@ -290,10 +290,12 @@ class TestController extends Controller {
 		$ids = explode(",", $test->part_one_ids);
 		$listenings = Listening::whereIn('id', $ids)
 			->get();
-			$startIndex = 1;
+		$startIndex = 1;
+		$trueAnswersIds = explode(",", $test->true_answer_part_one_ids);
 		return view('test.part_one_result', [
 			"listenings" => $listenings,
-			"startIndex" => $startIndex
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds
 		]);
 	}
 
@@ -322,10 +324,12 @@ class TestController extends Controller {
 		$ids = explode(",", $test->part_three_ids);
 		$listenings = Listening::whereIn('id', $ids)
 			->get();
-			$startIndex = 1;
+		$startIndex = 1;
+		$trueAnswersIds = explode(",", $test->true_answer_part_one_ids);
 		return view('test.part_three_result', [
 			"listenings" => $listenings,
-			"startIndex" => $startIndex
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds
 		]);
 	}
 }
