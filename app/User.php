@@ -47,5 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function classes() {
         return $this->belongsToMany('App\Classes', 'class_registers', 'user_id');
+	}
+	
+	public function getAvatarUrl() {
+        return $this->image ? url("/image/" . $this->image) : url('/img/default_avatar.jpg');
     }
 }

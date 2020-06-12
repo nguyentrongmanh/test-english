@@ -20,9 +20,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-		$currentUser = $this->get_login_user();
-		// dd($currentUser);
-    	View::share('currentUser', $currentUser);
         // $this->middleware('auth');
     }
 
