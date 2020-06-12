@@ -295,11 +295,14 @@ class TestController extends Controller {
 		return view('test.part_one_result', [
 			"listenings" => $listenings,
 			"startIndex" => $startIndex,
-			"trueAnswersIds" => $trueAnswersIds
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
 		]);
 	}
 
-	public function partTwoResult($id) {
+	public function partTwoResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
 		$test = Test::find($id);
 		$user = $this->get_login_user();
 		if ($test->user_id != $user->id) {
@@ -308,14 +311,18 @@ class TestController extends Controller {
 		$ids = explode(",", $test->part_two_ids);
 		$listenings = Listening::whereIn('id', $ids)
 			->get();
-			$startIndex = 1;
+		$trueAnswersIds = explode(",", $test->true_answer_part_two_ids);
 		return view('test.part_two_result', [
 			"listenings" => $listenings,
-			"startIndex" => $startIndex
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
 		]);
 	}
 
-	public function partThreeResult($id) {
+	public function partThreeResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
 		$test = Test::find($id);
 		$user = $this->get_login_user();
 		if ($test->user_id != $user->id) {
@@ -324,12 +331,92 @@ class TestController extends Controller {
 		$ids = explode(",", $test->part_three_ids);
 		$listenings = Listening::whereIn('id', $ids)
 			->get();
-		$startIndex = 1;
-		$trueAnswersIds = explode(",", $test->true_answer_part_one_ids);
+		$trueAnswersIds = explode(",", $test->true_answer_part_three_ids);
 		return view('test.part_three_result', [
 			"listenings" => $listenings,
 			"startIndex" => $startIndex,
-			"trueAnswersIds" => $trueAnswersIds
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
+		]);
+	}
+
+	public function partFourResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_four_ids);
+		$listenings = Listening::whereIn('id', $ids)
+			->get();
+		$trueAnswersIds = explode(",", $test->true_answer_part_four_ids);
+		return view('test.part_four_result', [
+			"listenings" => $listenings,
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
+		]);
+	}
+
+	public function partFiveResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_five_ids);
+		$readings = Reading::whereIn('id', $ids)
+			->get();
+		$trueAnswersIds = explode(",", $test->true_answer_part_five_ids);
+		return view('test.part_five_result', [
+			"readings" => $readings,
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
+		]);
+	}
+
+	public function partSixResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_six_ids);
+		$readings = Reading::whereIn('id', $ids)
+			->get();
+		$trueAnswersIds = explode(",", $test->true_answer_part_six_ids);
+		return view('test.part_six_result', [
+			"readings" => $readings,
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
+		]);
+	}
+
+	public function partSevenResult(Request $request, $id) {
+		$queryParams = $request->query();
+		$startIndex = $queryParams["startIndex"] ?? 1;
+		$test = Test::find($id);
+		$user = $this->get_login_user();
+		if ($test->user_id != $user->id) {
+			return redirect()->back();
+		}
+		$ids = explode(",", $test->part_seven_ids);
+		$readings = Reading::whereIn('id', $ids)
+			->get();
+		$trueAnswersIds = explode(",", $test->true_answer_part_seven_ids);
+		return view('test.part_seven_result', [
+			"readings" => $readings,
+			"startIndex" => $startIndex,
+			"trueAnswersIds" => $trueAnswersIds,
+			"test" => $test
 		]);
 	}
 }

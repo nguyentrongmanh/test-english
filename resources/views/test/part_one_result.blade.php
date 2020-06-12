@@ -45,8 +45,8 @@
 							</div>
 							<ul class="answer-list">
 								<li>
-									<input id="question_{{$question->id}}1" type="radio" data-id="{{$question->id}}"
-										name="question_{{$question->id}}" value="A"
+									<input disabled id="question_{{$question->id}}1" type="radio"
+										data-id="{{$question->id}}" name="question_{{$question->id}}" value="A"
 										{{ (in_array($question->id, $trueAnswersIds) && $question->answer == 'A') ? "checked" : null }} />
 									<label for="question_{{$question->id}}1">
 										<i class="icon icon_radio"></i>
@@ -57,8 +57,8 @@
 									</label>
 								</li>
 								<li>
-									<input id="question_{{$question->id}}2" type="radio" data-id="{{$question->id}}"
-										name="question_{{$question->id}}" value="B"
+									<input disabled id="question_{{$question->id}}2" type="radio"
+										data-id="{{$question->id}}" name="question_{{$question->id}}" value="B"
 										{{ (in_array($question->id, $trueAnswersIds) && $question->answer == 'B') ? "checked" : null }} />
 									<label for="question_{{$question->id}}2">
 										<i class="icon icon_radio"></i>
@@ -69,8 +69,8 @@
 									</label>
 								</li>
 								<li>
-									<input id="question_{{$question->id}}3" type="radio" data-id="{{$question->id}}"
-										name="question_{{$question->id}}" value="C"
+									<input disabled id="question_{{$question->id}}3" type="radio"
+										data-id="{{$question->id}}" name="question_{{$question->id}}" value="C"
 										{{ (in_array($question->id, $trueAnswersIds) && $question->answer == 'C') ? "checked" : null }} />
 									<label for="question_{{$question->id}}3">
 										<i class="icon icon_radio"></i>
@@ -81,8 +81,8 @@
 									</label>
 								</li>
 								<li>
-									<input id="question_{{$question->id}}4" type="radio" data-id="{{$question->id}}"
-										name="question_{{$question->id}}" value="D"
+									<input disabled id="question_{{$question->id}}4" type="radio"
+										data-id="{{$question->id}}" name="question_{{$question->id}}" value="D"
 										{{ (in_array($question->id, $trueAnswersIds) && $question->answer == 'D') ? "checked" : null }} />
 									<label for="question_{{$question->id}}4">
 										<i class="icon icon_radio"></i>
@@ -98,7 +98,9 @@
 						$startIndex++
 						@endphp
 						@endforeach
-						<button type="button" class="mc-btn btn-style-6">Next</button>
+						<a href="{{ url('/test/part-two-result/' . $test->id . '?startIndex=' . $startIndex) }}">
+							<button type="button" class="mc-btn btn-style-6">Next</button>
+						</a>
 					</div>
 				</div>
 			</div>

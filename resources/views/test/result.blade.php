@@ -36,7 +36,6 @@
 									<th colspan="2" style="color: #D93425">
 										Listening: {{ $test->getListeningScore() }}/100
 									</th>
-									<th class="right-answer" style="color: #D93425">Điểmnghe: 5</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -69,7 +68,6 @@
 									<th colspan="2" style="color: #D93425">
 										Reading: {{ $test->getReadingScore() }}/100
 									</th>
-									<th class="right-answer" style="color: #D93425">Điểm đọc: 5</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -91,7 +89,9 @@
 							</tbody>
 						</table>
 						<div class="text-center">
-							<a href="https://toeic24.vn/exam/exit" class="mc-btn btn-style-6">Exit</a>
+							<a href="{{ url('/home') }}" class="mc-btn btn-style-6">Exit</a>
+							<a href="{{ url('/test/part-one-result/' . $test->id) }}" class="mc-btn btn-style-6">Xem
+								lại</a>
 						</div>
 					</div>
 				</div>
