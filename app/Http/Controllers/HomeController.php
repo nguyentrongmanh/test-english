@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index()
     {
 		$classes = Classes::where('close_flg', CloseFlag::EMPTY)
-			->limit(2)
+			->limit(4)
 			->get();
 		$teachers = User::where("role", UserRole::ADMIN)
 			->limit(3)

@@ -34,30 +34,30 @@
 							<thead>
 								<tr>
 									<th colspan="2" style="color: #D93425">
-										Listening: {{ $test->getListeningScore() }}/100
+										Listening: {{ $test->getListeningScore() }}/20
 									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td><b>1- 6</b></td>
+									<td><b>1 - 3</b></td>
 									<td class="td-quest">Part I: Picture Description
-										<b>({{ $test->part_one_score }}/6)</b></td>
+										<b>({{ $test->part_one_score }}/3)</b></td>
 								</tr>
 								<tr>
-									<td><b>7 - 31</b></td>
+									<td><b>4 - 8</b></td>
 									<td class="td-quest">Part II: Question - Response
-										<b>({{ $test->part_two_score }}/25)</b></td>
+										<b>({{ $test->part_two_score }}/5)</b></td>
 								</tr>
 								<tr>
-									<td><b>32 - 70</b></td>
+									<td><b>9 - 14</b></td>
 									<td class="td-quest">Part III: Short Conversations
-										<b>({{ $test->part_three_score }}/39)</b></td>
+										<b>({{ $test->part_three_score }}/6)</b></td>
 								</tr>
 								<tr>
-									<td><b>71 - 100</b></td>
+									<td><b>15 - 20</b></td>
 									<td class="td-quest">Part IV: Short Talks
-										<b>({{ $test->part_four_score }}/30)</b>
+										<b>({{ $test->part_four_score }}/6)</b>
 									</td>
 								</tr>
 							</tbody>
@@ -72,19 +72,19 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><b>101 - 130</b></td>
+									<td><b>21 - 25</b></td>
 									<td class="td-quest">Part V: Incomplete Sentences
-										<b>({{ $test->part_five_score }}/30)</b></td>
+										<b>({{ $test->part_five_score }}/5)</b></td>
 								</tr>
 								<tr>
-									<td><b>131 - 146</b></td>
+									<td><b>26 - 29</b></td>
 									<td class="td-quest">Part VI: Text Completion
-										<b>({{ $test->part_six_score }}/16)</b></td>
+										<b>({{ $test->part_six_score }}/4)</b></td>
 								</tr>
 								<tr>
-									<td><b>147 - 200</b></td>
+									<td><b>30 - 40</b></td>
 									<td class="td-quest">Part VII: Reading Comprehension
-										<b>({{ $test->part_seven_score }}/54)</b></td>
+										<b>({{ $test->part_seven_score }}/11)</b></td>
 								</tr>
 							</tbody>
 						</table>

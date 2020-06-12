@@ -28,13 +28,13 @@ class TestController extends Controller {
 		$partOneIds = Listening::where("part", ToeicPart::PART_ONE)
 			->select("id")
 			->inRandomOrder()
-			->limit(2)
+			->limit(3)
 			->pluck("id")
 			->toArray();
 		$partTwoIds = Listening::where("part", ToeicPart::PART_TWO)
 			->select("id")
 			->inRandomOrder()
-			->limit(2)
+			->limit(5)
 			->pluck("id")
 			->toArray();
 		$partThreeIds = Listening::where("part", ToeicPart::PART_THREE)
@@ -52,7 +52,7 @@ class TestController extends Controller {
 		$partFiveIds = Reading::where("part", ToeicPart::PART_FIVE)
 			->select("id")
 			->inRandomOrder()
-			->limit(2)
+			->limit(5)
 			->pluck("id")
 			->toArray();
 		$partSixIds = Reading::where("part", ToeicPart::PART_SIX)
@@ -61,12 +61,28 @@ class TestController extends Controller {
 			->limit(1)
 			->pluck("id")
 			->toArray();
-		$partSevenIds = Reading::where("part", ToeicPart::PART_SEVEN)
+			$partSevenIds = [];
+		$partSevenIds = array_merge($partSevenIds, Reading::where("part", ToeicPart::PART_SEVEN)
+			->where("number_of_questions",2)
 			->select("id")
 			->inRandomOrder()
 			->limit(1)
 			->pluck("id")
-			->toArray();
+			->toArray());
+		$partSevenIds = array_merge($partSevenIds, Reading::where("part", ToeicPart::PART_SEVEN)
+			->where("number_of_questions",4)
+			->select("id")
+			->inRandomOrder()
+			->limit(1)
+			->pluck("id")
+			->toArray());
+		$partSevenIds = array_merge($partSevenIds, Reading::where("part", ToeicPart::PART_SEVEN)
+			->where("number_of_questions",5)
+			->select("id")
+			->inRandomOrder()
+			->limit(1)
+			->pluck("id")
+			->toArray());
 		try {
 			$test = Test::Create([
 				'user_id' => $user->id,
