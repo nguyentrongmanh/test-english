@@ -5,9 +5,6 @@
 	<h4 class="sm black bold">Test toeic online</h4>
 	<ul class="top-nav-list">
 		<li><a href="#"><b>Bách Khoa Toeic</b></a></li>
-		<li class="timer"><a style="font-size: 25px; padding-left: 15px; padding-right: 15px"
-				href="#"><b>01:30:00</b></a>
-		</li>
 		<li class="outline-learn part-list">
 			<a href="#"><i class="fas fa-list-alt"></i></a>
 			<div class="list-item-body outline-learn-body ps-container ps-active-y"

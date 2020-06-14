@@ -68,4 +68,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $validator;
     }
+	
+	public function getAvatarUrl() {
+        return $this->image ? url("/image/" . $this->image) : url('/img/default_avatar.jpg');
+    }
 }

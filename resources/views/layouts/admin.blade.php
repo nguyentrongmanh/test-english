@@ -32,34 +32,43 @@
 	<div id="wrapper">
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
+				<div class="sidebar-brand-icon">
+					@php
+					$user = Auth::user()
+					@endphp
+					<img src="{{ $user->getAvatarUrl() }}" class="admin-small-avatar" />
 				</div>
-				<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+				<div class="sidebar-brand-text mx-3">Admin</div>
 			</a>
 			<hr class="sidebar-divider my-0">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ route('admin-home') }}">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Người dùng</span></a>
+					<i class="fas fa-fw fa-users"></i>
+					<span>Users</span></a>
 			</li>
 			<hr class="sidebar-divider">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ route('index-listening') }}">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<i class="fas fa-fw fa-headphones"></i>
 					<span>Listening</span></a>
 			</li>
 			<hr class="sidebar-divider">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ route('index-reading') }}">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<i class="fas fa-fw fa-book-open"></i>
 					<span>Reading</span></a>
 			</li>
 			<hr class="sidebar-divider">
 			<li class="nav-item active">
 				<a class="nav-link" href="{{ route('index-classes') }}">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
+					<i class="fas fa-fw fa-bookmark"></i>
 					<span>Classes</span></a>
+			</li>
+			<hr class="sidebar-divider">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ url('/logout') }}">
+					<i class="fas fa-fw fa-sign-out-alt"></i>
+					<span>Logout</span></a>
 			</li>
 			<hr class="sidebar-divider d-none d-md-block">
 			<div class="text-center d-none d-md-inline">
@@ -72,12 +81,10 @@
 			<!-- Main Content -->
 			<div id="content">
 				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
 					<!-- Sidebar Toggle (Topbar) -->
 					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 						<i class="fa fa-bars"></i>
 					</button>
-
 					<!-- Topbar Search -->
 					<form
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -92,7 +99,6 @@
 						</div>
 					</form>
 				</nav>
-
 				@yield('content')
 			</div>
 		</div>

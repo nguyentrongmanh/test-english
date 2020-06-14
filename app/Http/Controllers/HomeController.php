@@ -26,9 +26,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $currentUser = $this->get_login_user();
-        // dd($currentUser);
-        View::share('currentUser', $currentUser);
         // $this->middleware('auth');
     }
 
@@ -39,12 +36,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $classes = Classes::where('close_flg', CloseFlag::EMPTY)
-            ->limit(2)
-            ->get();
-        $teachers = User::where("role", UserRole::ADMIN)
-            ->limit(3)
-            ->get();
+		$classes = Classes::where('close_flg', CloseFlag::EMPTY)
+			->limit(4)
+			->get();
+		$teachers = User::where("role", UserRole::ADMIN)
+			->limit(3)
+			->get();
+            
         return view('home', [
             "classes" => $classes,
             "teachers" => $teachers,

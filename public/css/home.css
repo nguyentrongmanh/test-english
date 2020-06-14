@@ -1348,3 +1348,7 @@ section .tabs-content {
     color: #ed563b !important;
     margin-top: 10px;
 }
+.class-img {
+    width: 100%;
+    height: 380px;
+}
