@@ -40,6 +40,10 @@
 					<label class="custom-file-label" for="main_img">Choose file...</label>
 					<div class="invalid-feedback">Example invalid custom file feedback</div>
 				</div>
+				<div class="drop-container">
+					<img id="drop" class="hidden" />
+					<div class="drop-text">Drop files</div>
+				</div>
 			</div>
 			<div class="part-one-and_two-sheet">
 				<div class="form-group">
@@ -124,7 +128,36 @@
 	</form>
 </div>
 </div>
+<script>
+	$(document).ready(function () {
+		$("input[name=main_img]").on("change", function(event) {
+			var fReader = new FileReader();
+			var fileName = event.target.value
+			fReader.readAsDataURL(event.target.files[0]);
+			fReader.onloadend = function(event){
+				var img = document.getElementById("drop");
+				$("#drop").removeClass("hidden") 
+				$("#drop").attr("src", event.target.result)
+				$(".drop-text").addClass("hidden")
+				$("label[for=main_img]").html(fileName)
+			}
+		});
+	})
+</script>
 
+<script>
+	$(document).ready(function () {
+		$("input[name=audio]").on("change", function(event) {
+			var fReader = new FileReader();
+			var fileName = event.target.value
+			fReader.readAsDataURL(event.target.files[0]);
+			fReader.onloadend = function(event){
+				console.log(event)
+				$("label[for=audio]").html(fileName)
+			}
+		});
+	})
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		const PART_ONE = 1;

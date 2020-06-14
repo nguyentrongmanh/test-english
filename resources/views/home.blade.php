@@ -42,92 +42,53 @@
 		<div class="row">
 			<div class="col-lg-6 offset-lg-3">
 				<div class="section-heading">
-					<h2>Choose your <em>course</em></h2>
-					<img src="assets/images/line-dec.png" alt="waves">
-					<p>Training Studio is free CSS template for gyms and fitness centers. You are allowed to use this
-						layout for your business website.</p>
+					<h2>Choose your <em>Class</em></h2>
+					<img src="{{ url('img/line-dec.png') }}" alt="waves">
+					<p>We offer classes that are suitable for everyone.</p>
 				</div>
 			</div>
 			<div class="col-lg-6">
+				@foreach ($classes as $index => $class)
+				@if ($index % 2 == 0)
 				<ul class="features-items">
 					<li class="feature-item">
 						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="First One">
+							<img src="{{ url('/img/home-class.png') }}" alt="First One">
 						</div>
 						<div class="right-content">
-							<h4>Basic Fitness</h4>
-							<p>Please do not re-distribute this template ZIP file on any template collection website.
-								This is not allowed.</p>
-							<a href="#" class="text-button">Discover More</a>
-						</div>
-					</li>
-					<li class="feature-item">
-						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="second one">
-						</div>
-						<div class="right-content">
-							<h4>New Gym Training</h4>
-							<p>If you wish to support TemplateMo website via PayPal, please feel free to contact us. We
-								appreciate it a lot.</p>
-							<a href="#" class="text-button">Discover More</a>
-						</div>
-					</li>
-					<li class="feature-item">
-						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="third gym training">
-						</div>
-						<div class="right-content">
-							<h4>Basic Muscle Course</h4>
-							<p>Credit goes to <a rel="nofollow" href="https://www.pexels.com" target="_blank">Pexels
-									website</a> for images and video background used in this HTML template.</p>
+							<h4>{{ $class->name }}</h4>
+							<p>{{ $class->description }}</p>
 							<a href="#" class="text-button">Discover More</a>
 						</div>
 					</li>
 				</ul>
+				@endif
+				@endforeach
 			</div>
 			<div class="col-lg-6">
+				@foreach ($classes as $index => $class)
+				@if ($index % 2 == 1)
 				<ul class="features-items">
 					<li class="feature-item">
 						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="fourth muscle">
+							<img src="{{ url('/img/home-class.png') }}" alt="First One">
 						</div>
 						<div class="right-content">
-							<h4>Advanced Muscle Course</h4>
-							<p>You may want to browse through <a rel="nofollow"
-									href="https://templatemo.com/tag/digital-marketing" target="_parent">Digital
-									Marketing</a> or <a href="https://templatemo.com/tag/corporate">Corporate</a> HTML
-								CSS templates on our website.</p>
-							<a href="#" class="text-button">Discover More</a>
-						</div>
-					</li>
-					<li class="feature-item">
-						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="training fifth">
-						</div>
-						<div class="right-content">
-							<h4>Yoga Training</h4>
-							<p>This template is built on Bootstrap v4.3.1 framework. It is easy to adapt the columns and
-								sections.</p>
-							<a href="#" class="text-button">Discover More</a>
-						</div>
-					</li>
-					<li class="feature-item">
-						<div class="left-icon">
-							<img src="assets/images/features-first-icon.png" alt="gym training">
-						</div>
-						<div class="right-content">
-							<h4>Body Building Course</h4>
-							<p>Suspendisse fringilla et nisi et mattis. Curabitur sed finibus nisi. Integer nibh sapien,
-								vehicula et auctor.</p>
+							<h4>{{ $class->name }}</h4>
+							<p>{{ $class->description }}</p>
 							<a href="#" class="text-button">Discover More</a>
 						</div>
 					</li>
 				</ul>
+				@endif
+				@endforeach
 			</div>
+		</div>
+		<div class="main-button scroll-to-section home-class-btn">
+			<a href="{{ url('test/start') }}">SEE MORE CLASSES</a>
 		</div>
 	</div>
 </section>
-<!-- ***** Features Item End ***** -->
 
 <!-- ***** Call to Action Start ***** -->
 <section class="section" id="call-to-action">
@@ -139,13 +100,50 @@
 					<p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio
 						augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
 					<div class="main-button scroll-to-section">
-						<a href="{{ url('test/start	') }}">START ONLINE TEST</a>
+						<a href="{{ url('test/start') }}">START ONLINE TEST</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<section class="section" id="trainers">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3">
+				<div class="section-heading">
+					<h2>OUR <em>TEACHERS</em></h2>
+					<img src="assets/images/line-dec.png" alt="">
+					<p>The success of students is also the success of our teachers</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			@foreach ($teachers as $teacher)
+			<div class="col-lg-4">
+				<div class="trainer-item">
+					<div class="image-thumb">
+						<img src="{{ $teacher->getAvatarUrl() }}" alt="">
+					</div>
+					<div class="down-content">
+						<h4>{{ $teacher->name }}</h4>
+						<p>{{ $teacher->intro ?? "Trên 5 năm kinh nghiệm luyện thi TOEIC, IELTS. Đạt 990/990 TOEIC , 8.5 IELTS. Thạc sĩ trường Leeds Metropolitan của
+						Vương Quốc Anh." }}</p>
+						<ul class="social-icons">
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fab fa-behance"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			@endforeach
+		</div>
+	</div>
+</section>
+
 
 @if (session('success'))
 <script type="text/javascript">

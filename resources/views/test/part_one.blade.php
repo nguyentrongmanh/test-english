@@ -101,7 +101,7 @@
 	var list = {!! json_encode($listeningQuestions) !!};
 	var hiddenInput = "true_answer_part_one_ids"
 	var t1 = new Date();
-	var defaultCountDown = 7200;
+	var defaultCountDown = 30*60;
 </script>
 <script src="{{ url('js/listening_test.js') }}">
 </script>

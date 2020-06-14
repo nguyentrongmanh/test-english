@@ -16,7 +16,7 @@
 				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 					@foreach ($classes as $index => $class)
 					<li data-index="{{ $index }}"
-						class="{{ $index > 4 ? 'hidden ' : null }} class-link ui-state-default ui-corner-top {{ $index == 0 ? 'ui-tabs-active ui-state-active' : null 	}}">
+						class="{{ $index > 3 ? 'hidden ' : null }} class-link ui-state-default ui-corner-top {{ $index == 0 ? 'ui-tabs-active ui-state-active' : null 	}}">
 						<a class="ui-tabs-anchor ">
 							<i class="fas fa-bookmark"></i>{{ $class->name }}
 						</a>

@@ -40,6 +40,7 @@ Route::get("/test/part-four-result/{testId}", "TestController@partFourResult");
 Route::get("/test/part-five-result/{testId}", "TestController@partFiveResult");
 Route::get("/test/part-six-result/{testId}", "TestController@partSixResult");
 Route::get("/test/part-seven-result/{testId}", "TestController@partSevenResult");
+Route::get("/logout", "Auth\LoginController@logout");
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 	Route::get('/', 'Admin\UsersController@index')->name("admin-home");

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Classes;
+use App\User;
 use App\ClassRegister;
 use App\Enums\CloseFlag;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -27,7 +30,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		$classes = Classes::where('close_flg', CloseFlag::EMPTY)
+			->limit(4)
+			->get();
+		$teachers = User::where("role", UserRole::ADMIN)
+			->limit(3)
+			->get();
+        return view('home', [
+			"classes" => $classes,
+			"teachers" => $teachers
+		]);
     }
 
     function class ()

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -23,7 +24,14 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+		$this->middleware('auth');
+		$this->middleware(function ($request, $next) {
+			$userRole = Auth::user()->role;
+			if ($userRole != UserRole::ADMIN) {
+				return redirect()->route("home");
+			}
+			return $next($request);
+		});
     }
 
     /**
@@ -103,6 +111,7 @@ class UsersController extends Controller
 			$user->address = $data["address"];
 			$user->phone = $data["phone"];
 			$user->company = $data["company"];
+			$user->intro = $data["intro"];
 			$user->role = $data["role"];
 			$user->save();
 		} catch (\Exception $e) {

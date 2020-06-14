@@ -776,7 +776,7 @@ subscribe
 
 #call-to-action {
     padding: 120px 0px;
-    background-image: url(../img/banner.jpg);
+    background-image: url(../img/banner2.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1337,4 +1337,18 @@ section .tabs-content {
 
 .hidden {
     display: none !important;
+}
+
+.home-class-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.down-content h4 {
+    color: #ed563b !important;
+    margin-top: 10px;
+}
+.class-img {
+    width: 100%;
+    height: 380px;
 }
