@@ -15,18 +15,54 @@ $class->image = $class->image ?? 'default_class_image.jpg';
 				<img class="class-image" src="{{ url('image/' . $class->image) }}" />
 			</div>
 			<ul class="list-group">
-				<li class="list-group-item">Class Name: {{ $class->name }}</li>
-				<li class="list-group-item">Teacher Name: {{ $teacher->name }}</li>
-				<li class="list-group-item">Target: {{ $class->target }} Toeic +</li>
-				<li class="list-group-item">Address: {{ $class->address }}</li>
-				<li class="list-group-item">Schedule: {{ $class->schedule }}</li>
-				<li class="list-group-item">Description: {{ $class->description }}</li>
-				<li class="list-group-item">Total Number: {{ $class->total_number }} students</li>
-				<li class="list-group-item">Register Number: {{ $class->register_number }} students</li>
-				<li class="list-group-item">Fee: {{ $class->fee }}</li>
-				<li class="list-group-item">Start Date: {{ $class->start_date }}</li>
-				<li class="list-group-item">End Date: {{ $class->end_date }}</li>
-				<li class="list-group-item">Create At: {{ $class->getFormatCreated() }}</li>
+				<li class="list-group-item">
+					<p class="label">Class Name</p>
+					<p> : {{ $class->name }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Teacher Name</p>
+					<p> : {{ $teacher->name }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Target</p>
+					<p> : {{ $class->target }} Toeic + </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Address</p>
+					<p> : {{ $class->address }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Schedule</p>
+					<p> : {{ $class->schedule }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Description</p>
+					<p> : {{ $class->description }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Total Number</p>
+					<p> : {{ $class->total_number }} students</p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Register Number</p>
+					<p> : {{ $class->register_number }} students </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Fee</p>
+					<p> : {{ $class->fee }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Start Date</p>
+					<p> : {{ $class->start_date }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">End Date</p>
+					<p> : {{ $class->end_date }} </p>
+				</li>
+				<li class="list-group-item">
+					<p class="label">Create At</p>
+					<p> : {{ $class->getFormatCreated() }} </p>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -41,18 +77,21 @@ $class->image = $class->image ?? 'default_class_image.jpg';
 						<tr>
 							<th>Student Name</th>
 							<th>Student Email</th>
-							<th >Registered at</th>
+							<th>Registered at</th>
+							<th>Link</th>
 						</tr>
 					</thead>
 					<tbody>
 						@php
-						
+
 						@endphp
 						@foreach ($students as $student)
 						<tr style="width: 20px">
 							<td>{{ $student->name }}</td>
 							<td>{{ $student->email }}</td>
 							<td>{{ $student->pivot->created_at }}</td>
+							<td><a class="btn btn-primary"
+									href="{{ url('admin/users/detail/' . $student->id) }}">Link</a></td>
 						</tr>
 						@endforeach
 					</tbody>

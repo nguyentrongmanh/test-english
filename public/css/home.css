@@ -1013,6 +1013,7 @@ trainers
 
 #trainers .trainer-item img {
     width: 100%;
+    height: 290px;
     border-radius: 5px;
 }
 

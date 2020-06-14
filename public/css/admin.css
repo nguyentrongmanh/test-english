@@ -11470,7 +11470,7 @@ audio {
 }
 
 .admin-small-avatar {
-	    width: 48px;
+    width: 48px;
     border-radius: 50%;
 }
 
@@ -11542,4 +11542,16 @@ img.admin-user-avatar {
 
 .detail-audio {
     width: 300px !important;
+}
+.list-group-item {
+    display: flex !important;
+}
+
+.list-group-item .label {
+    width: 150px;
+    font-weight: 700;
+}
+
+.list-group-item p {
+    width: 900px;
 }

@@ -97,8 +97,7 @@
 			<div class="col-lg-10 offset-lg-1">
 				<div class="cta-content">
 					<h2>ONLINE <em>toeic test</em></h2>
-					<p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio
-						augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
+					<p>Test your English in just 30 minutes</p>
 					<div class="main-button scroll-to-section">
 						<a href="{{ url('test/start') }}">START ONLINE TEST</a>
 					</div>
