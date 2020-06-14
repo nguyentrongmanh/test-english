@@ -19,7 +19,7 @@
 			</div>
 		</li>
 		<li class="exit">
-			<a href="#"><i class="fas fa-times-circle"></i></a>
+			<a href="#" class="exit-test"><i class="fas fa-times-circle"></i></a>
 		</li>
 	</ul>
 </div>
@@ -58,7 +58,7 @@
 								<li>
 									<input id="question_{{$question->id}}3" type="radio" data-id="{{$question->id}}"
 										name="question_{{$question->id}}" value="A">
-									<label for="question_{{$question->id}}4">
+									<label for="question_{{$question->id}}3">
 										<i class="icon icon_radio"></i>
 										C. {{ $question->option_c }}
 									</label>
@@ -66,7 +66,7 @@
 								<li>
 									<input id="question_{{$question->id}}4" type="radio" data-id="{{$question->id}}"
 										name="question_{{$question->id}}" value="A">
-									<label for="question_{{$question->id}}5">
+									<label for="question_{{$question->id}}4">
 										<i class="icon icon_radio"></i>
 										D. {{ $question->option_d }}
 									</label>

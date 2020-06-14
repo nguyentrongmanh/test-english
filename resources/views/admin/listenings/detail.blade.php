@@ -50,7 +50,7 @@
 			</div>
 			@endforeach
 			@else
-			<p style="margin-top: 20px">Answer: {{$listening->questions[0]->answer}}</p>
+			<p style="margin-top: 20px;">Answer: {{$listening->questions[0]->answer}}</p>
 			@endif
 		</div>
 	</div>

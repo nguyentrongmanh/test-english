@@ -20,7 +20,7 @@
 			</div>
 		</li>
 		<li class="exit">
-			<a href="#"><i class="fas fa-times-circle"></i></a>
+			<a href="#" class="exit-test"><i class="fas fa-times-circle"></i></a>
 		</li>
 	</ul>
 </div>

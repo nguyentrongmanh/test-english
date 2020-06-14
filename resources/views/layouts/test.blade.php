@@ -13,6 +13,7 @@
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/flipdown.min.js') }}"></script>
+	<script src="{{ url('js/sweetalert.min.js') }}"></script>
 	<title></title>
 	<style>
 		audio {
@@ -24,5 +25,22 @@
 <body>
 	@yield('content')
 </body>
+<script>
+	var baseLaravelUrl = "{{ url('/') }}"
+	$(document).ready(function() {
+		$(".exit-test").on("click", function(e) {
+			e.preventDefault()
+			swal({
+			title: "Kết quả thi sẽ bị hủy!! Bạn vẫn muốn thoát?",
+			dangerMode: true,
+			buttons: true,
+			}).then((value) => {
+				if (value == true) {
+					window.location = baseLaravelUrl
+				}
+			});
+		})
+	})
+</script>
 
 </html>
