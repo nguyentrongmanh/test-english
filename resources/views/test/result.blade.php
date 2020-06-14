@@ -92,6 +92,11 @@
 							<a href="{{ url('/home') }}" class="mc-btn btn-style-6">Exit</a>
 							<a href="{{ url('/test/part-one-result/' . $test->id) }}" class="mc-btn btn-style-6">Xem
 								lại</a>
+							@php
+							$target = ($test->getReadingScore() + $test->getListeningScore()) * 25
+							@endphp
+							<a href="{{ url('/class-recommend?target=' . $target) }}" class="mc-btn btn-style-6">Xem
+								gợi ý lớp học</a>
 						</div>
 					</div>
 				</div>

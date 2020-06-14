@@ -42,12 +42,42 @@ class HomeController extends Controller
 		]);
     }
 
-    function class ()
+    function class(Request $request)
     {
+		$queryParams = $request->query();
+		$target = $queryParams["target"] ?? 0;
+		$target += 300;
+		if ($target <= 450) {
+			$targetUpper = 450;
+		} else if ($target <= 650){
+			$target = 650;
+		} else {
+			$target = 900;
+		}		
         $classes = Classes::where('close_flg', CloseFlag::EMPTY)
             ->get();
         return view('class', [
-            "classes" => $classes,
+			"classes" => $classes,
+        ]);
+	}
+	
+	function classRecommend(Request $request)
+    {
+		$queryParams = $request->query();
+		$target = $queryParams["target"] ?? 0;
+		$target += 200;
+		if ($target <= 450) {
+			$target = 450;
+		} else if ($target <= 650){
+			$target = 650;
+		} else {
+			$target = 900;
+		}		
+		$class = Classes::where('close_flg', CloseFlag::EMPTY)
+			->where("target", $target)
+            ->first();
+        return view('class_recommend', [
+			"class" => $class,
         ]);
     }
 

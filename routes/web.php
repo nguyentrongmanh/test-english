@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index');
 Route::get('/class', 'HomeController@class')->name('class');
+Route::get('/class-recommend', 'HomeController@classRecommend')->name('class-recommend');
 Route::get('/class/register', 'HomeController@register')->name('class-register')
 	->middleware('auth');
 Route::get('/test/start', 'TestController@start')->name('test-start');
