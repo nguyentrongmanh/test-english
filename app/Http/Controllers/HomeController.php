@@ -146,7 +146,7 @@ class HomeController extends Controller
         $request_data = $request->all();
         $validator = User::credential_rules($request_data);
         if ($validator->fails()) {
-            return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
+            return redirect()->route('change-password')->with('error1', __('error1'));
         } else {
             $current_password = Auth::User()->password;
             if (Hash::check($request_data['current-password'], $current_password)) {
@@ -154,9 +154,9 @@ class HomeController extends Controller
                 $user = User::find($userId);
                 $user->password = Hash::make($request_data['password']);
                 $user->save();
-                return redirect()->route('home')->with('success', __('success'));
+                return redirect()->route('profile')->with('success', __('success'));
             }
-            return redirect()->route('home')->with('error', __('error')); 
+            return redirect()->route('change-password')->with('error2', __('error2')); 
         }
     }
 }

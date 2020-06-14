@@ -1,12 +1,15 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('content')
 <div class="row profile-page">
 	<div class="col-md-8 offset-md-2">
 		<div class="card shadow mb-4 " id="profile">
 			<div class="card-header py-3">
-				<h1 class="m-0 font-weight-bold text-primary">User Profile</h1>
-				<a href="/change-password" class="change-pass">Change your password</a>
+				<h2 class="m-0 font-weight-bold text-primary">User Profile</h2>
+				<button type="button" class="change-pass">
+					<a href="/change-password">Change your password</a>
+				</button>
+				
 			</div>
 			<div class="card-body">
 				<form method="POST" id="add-reading-form" enctype='multipart/form-data'
@@ -86,7 +89,7 @@
 		</div>
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h1 class="m-0 font-weight-bold text-primary">Registered Classes</h1>
+				<h2 class="m-0 font-weight-bold text-primary">Registered Classes</h2>
 			</div>
 			<div class="card-body">
 				<table class="table">
@@ -131,7 +134,7 @@
 @if (session('success'))
 <script type="text/javascript">
     swal({
-        title: "Sửa thông tin thành công",
+        title: "Thành công",
         icon: "success",
         button: "OK!",
     });

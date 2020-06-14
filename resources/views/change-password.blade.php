@@ -5,7 +5,7 @@
 	<div class="col-md-8 offset-md-2">
 		<div class="card shadow mb-4 " id="profile">
 			<div class="card-header py-3">
-				<h1 class="m-0 font-weight-bold text-primary">Change your password</h1>
+				<h2 class="m-0 font-weight-bold text-primary">Change your password</h2>
 			</div>
 			<div class="card-body">
 				<form method="POST" id="form-change-password" enctype='multipart/form-data'
@@ -38,20 +38,20 @@
 	</div>
 </div>
 
-@if (session('success'))
+@if (session('error1'))
 <script type="text/javascript">
     swal({
-        title: "Thay đổi mật khẩu thành công",
-        icon: "success",
-        button: "OK!",
+        title: "Mật khẩu mới không trùng nhau",
+        icon: "error",
+        dangerMode: true,
     });
 </script>
 @endif
 
-@if (session('error'))
+@if (session('error2'))
 <script type="text/javascript">
     swal({
-        title: "Có lỗi xảy ra, vui lòng thử lại",
+        title: "Mật khẩu hiện tại không đúng",
         icon: "error",
         dangerMode: true,
     });

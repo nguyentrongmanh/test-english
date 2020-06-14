@@ -10939,10 +10939,11 @@ a.text-dark:focus {
     object-fit: cover;
 }
 .row.profile-page {
+  margin-top: 100px;
   margin-left: 0;
   margin-right: 0;
 }
-.profile-page h1 {
+.profile-page h2 {
   color: #ed563b !important;
 }
 .profile-page button {
@@ -10952,4 +10953,11 @@ a.text-dark:focus {
 .profile-page .add-btn {
   text-align: center;
 }
-
+#profile .card-header.py-3 {
+  display: flex;
+  justify-content: space-between;
+}
+#profile .card-header.py-3 .change-pass a{
+    color: white;
+    font-size: 14px;
+}
