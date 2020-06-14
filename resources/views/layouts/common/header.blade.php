@@ -6,8 +6,8 @@
 					<ul class="nav">
 						<li class="scroll-to-section"><a href="{{ route('home')}}" class="active">Home</a></li>
 						<li class="scroll-to-section"><a href="#features">About</a></li>
-						<li class="scroll-to-section"><a href="{{ route('class')}}">Classes</a></li>
-						<li class="scroll-to-section"><a href="">Profile</a></li>
+						<li class="scroll-to-section"><a href="{{ route('class') }}">Classes</a></li>
+						<li class="scroll-to-section"><a href="{{ route('profile') }}">Profile</a></li>
 						<li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
 						@php
 						$currentUser = Auth::user();

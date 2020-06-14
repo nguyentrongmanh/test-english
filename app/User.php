@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Validator;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', "company", "age", "phone", "address", 'image', "intro"
+        'name', 'email', 'password', "company", "age", "phone", "address", 'image', "intro",
     ];
 
     /**
@@ -36,16 +37,35 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-	];
-	public function getFormatCreated() {
-		return Carbon::createFromFormat("Y-m-d H:i:s", $this->created_at)->format("Y-m-d");
-	}
+    ];
+    public function getFormatCreated()
+    {
+        return Carbon::createFromFormat("Y-m-d H:i:s", $this->created_at)->format("Y-m-d");
+    }
 
-	public function tests() {
-		return $this->hasMany('App\Test');
-	}
+    public function tests()
+    {
+        return $this->hasMany('App\Test');
+    }
 
-    public function classes() {
-        return $this->belongsToMany('App\Classes', 'class_registers', 'user_id');
+    public function classes()
+    {
+        return $this->belongsToMany('App\Classes', 'class_registers', 'user_id', 'class_id')->withPivot('created_at');
+    }
+
+    public static function credential_rules(array $data)
+    {
+        $messages = [
+            'current-password.required' => 'Please enter current password',
+            'password.required' => 'Please enter password',
+        ];
+
+        $validator = Validator::make($data, [
+            'current-password' => 'required',
+            'password' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
+        ], $messages);
+
+        return $validator;
     }
 }

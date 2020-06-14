@@ -10923,3 +10923,33 @@ a.text-dark:focus {
   }
 }
 
+#profile .drop-container {
+    width: 400px;
+    height: 250px;
+    border: 2px dashed #a4aba7;
+    border-radius: 5px;
+    background: #e6edf0;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+#profile img#drop {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+.row.profile-page {
+  margin-left: 0;
+  margin-right: 0;
+}
+.profile-page h1 {
+  color: #ed563b !important;
+}
+.profile-page button {
+  background-color: #ed563b !important;
+  border-color: #ed563b !important;
+}
+.profile-page .add-btn {
+  text-align: center;
+}
+
