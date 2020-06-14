@@ -123,4 +123,22 @@ class ReadingsController extends Controller {
 			return false;
 		}
 	}
+
+	public function delete($id) {
+		try {
+			Reading::destroy($id);
+		} catch (\Exception $th) {
+			Log::info($e);
+			return redirect()->route('index-reading')->with('error', __('error'));
+		}
+        return redirect()->route('index-reading')->with('delete', __('success'));
+	}
+
+	public function detail($id)
+	{
+		$reading = Reading::find($id);
+		return view('admin.readings.detail', [
+			"reading" => $reading
+		]);
+	}
 }

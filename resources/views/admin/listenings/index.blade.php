@@ -40,4 +40,34 @@
 	});
 </script>
 @endif
+
+@if (session('edit'))
+<script type="text/javascript">
+	swal({
+		title: "Edit success",
+		icon: "success",
+		button: "Ok!",
+	});
+</script>
+@endif
+
+@if (session('delete'))
+<script type="text/javascript">
+	swal({
+		title: "Delete success",
+		icon: "success",
+		button: "Ok!",
+	});
+</script>
+@endif
+
+@if (session('error'))
+<script type="text/javascript">
+	swal({
+		title: "An error occurred",
+		icon: "error",
+		dangerMode: true,
+	});
+</script>
+@endif
 @endsection

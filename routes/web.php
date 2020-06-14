@@ -46,9 +46,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 	// listening
 	Route::post('/listenings/create', 'Admin\ListeningsController@create')->name("create-listening");
 	Route::get('/listenings/create', 'Admin\ListeningsController@getCreate')->name("create-listening");
+	Route::get('/listenings/delete/{id}', 'Admin\ListeningsController@delete')->name("delete-listening");
+	Route::get('/listenings/detail/{id}', 'Admin\ListeningsController@detail')->name("detail-listening");
 	Route::get('/listenings', 'Admin\ListeningsController@index')->name("index-listening");
 	//reading
 	Route::get('/readings/create', 'Admin\ReadingsController@getCreate')->name("create-reading");
+	Route::get('/readings/delete/{id}', 'Admin\ReadingsController@delete')->name("delete-reading");
+	Route::get('/readings/detail/{id}', 'Admin\ReadingsController@detail')->name("detail-reading");
 	Route::get('/readings', 'Admin\ReadingsController@index')->name("index-reading");
 	Route::post('/readings/create', 'Admin\ReadingsController@create')->name("create-reading");
 	//users

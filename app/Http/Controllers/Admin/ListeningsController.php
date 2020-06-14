@@ -191,4 +191,22 @@ class ListeningsController extends Controller {
 			return false;
 		}
 	}
+
+	public function delete($id) {
+		try {
+			Listening::destroy($id);
+		} catch (\Exception $th) {
+			Log::info($e);
+			return redirect()->route('index-listening')->with('error', __('error'));
+		}
+        return redirect()->route('index-listening')->with('delete', __('success'));
+	}
+
+	public function detail($id)
+	{
+		$listening = Listening::find($id);
+		return view('admin.listenings.detail', [
+			"listening" => $listening
+		]);
+	}
 }

@@ -11472,6 +11472,7 @@ audio {
 .btn-search {
     margin-left: 16px;
     margin-bottom: 0px;
+
     margin-top: -8px;
 }
 
@@ -11528,4 +11529,12 @@ img.admin-user-avatar {
     height: 350px;
     margin: 20px 0px;
     object-fit: cover;
+}
+
+.answer-list {
+    list-style: none;
+}
+
+.detail-audio {
+    width: 300px !important;
 }
