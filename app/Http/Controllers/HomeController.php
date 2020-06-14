@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use App\Validator;
+use Mail;
+use App\Mail\ForTeacher;
+use App\Mail\ForStudent;
 
 class HomeController extends Controller
 {
@@ -81,6 +84,11 @@ class HomeController extends Controller
                 $classDetail->close_flg = CloseFlag::FULL;
             }
             $classDetail->save();
+            $student = User::find($userId);
+            $teacher = User::find($classDetail->teacher_id);
+            Mail::to($student->email)->send(new ForStudent($student));
+            Mail::to($teacher->email)->send(new ForTeacher($teacher));
+
             return redirect()->route('home')->with('success', __('success'));
         }
         return redirect()->route('home')->with('error', __('error'));
@@ -123,9 +131,9 @@ class HomeController extends Controller
             $user->save();
         } catch (\Exception $e) {
             Log::info($e);
-            return redirect()->route('home')->with('error', __('error'));
+            return redirect()->route('profile')->with('error', __('error'));
         }
-        return redirect()->route('home')->with('success', __('success'));
+        return redirect()->route('profile')->with('success', __('success'));
     }
 
     public function getPassword()
