@@ -85,7 +85,7 @@
 			</div>
 		</div>
 		<div class="main-button scroll-to-section home-class-btn">
-			<a href="{{ url('test/start') }}">SEE MORE CLASSES</a>
+			<a href="{{ url('class') }}">SEE MORE CLASSES</a>
 		</div>
 	</div>
 </section>

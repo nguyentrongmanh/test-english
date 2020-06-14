@@ -11472,6 +11472,7 @@ audio {
 .admin-small-avatar {
     width: 48px;
     border-radius: 50%;
+    height: 48px;
 }
 
 .btn-search {
