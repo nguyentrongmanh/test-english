@@ -1,11 +1,9 @@
 <section class="mail-body">
 <h3>
-  	<strong>System Alert!</strong>
+  	<p>Dear, <strong>{{ $student->name }}</strong></p>
 </h3>
-<p>{{ $data['name'] }} gave </p>
-<div class="my-btn" align="center" style="margin-bottom: 12px">
-  	<a href="" class="back-to-app" style="background: #28a745; padding: 12px; color: white; text-decoration: none; border-radius: 4px;">
-		Return 1
-  	</a>
-</div>
+<p>You are now a member of the <strong>{{ $class->name }}</strong> class.
+	See details at {{ url('/profile')}}.
+</p>
+<p>Thank you for trusting and using our service. Have a nice day!</p>
 </section>

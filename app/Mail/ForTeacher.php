@@ -11,16 +11,16 @@ class ForTeacher extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $data = [];
+    public $teacher;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data = [])
+    public function __construct($teacher)
     {
-        $this->data = $data;
+        $this->teacher = $teacher;
     }
 
     /**
@@ -30,11 +30,7 @@ class ForTeacher extends Mailable
      */
     public function build()
     {
-        $name = $this->data;
         return $this->view('Mails.teacher')
-            ->subject($name['name'].' Feedback!')
-            ->with([
-                'data' => $this->data,
-            ]);
+            ->subject('Class registration is successful');
     }
 }

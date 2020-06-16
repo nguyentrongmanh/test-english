@@ -86,7 +86,7 @@ class HomeController extends Controller
             $classDetail->save();
             $student = User::find($userId);
             $teacher = User::find($classDetail->teacher_id);
-            Mail::to($student->email)->send(new ForStudent($student));
+            Mail::to($student->email)->send(new ForStudent($student, $classDetail));
             Mail::to($teacher->email)->send(new ForTeacher($teacher));
 
             return redirect()->route('home')->with('success', __('success'));

@@ -11,15 +11,17 @@ class ForStudent extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $data = [];
+    public $student;
+    public $class;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data = [])
+    public function __construct($student, $class)
     {
-        $this->data = $data;
+        $this->student = $student;
+        $this->class = $class;
     }
 
     /**
@@ -29,11 +31,7 @@ class ForStudent extends Mailable
      */
     public function build()
     {
-        $name = $this->data;
         return $this->view('Mails.student')
-            ->subject(env('APP_NAME').' Feedback!')
-            ->with([
-                'data' => $this->data,
-            ]);
+            ->subject('Class registration is successful');
     }
 }
