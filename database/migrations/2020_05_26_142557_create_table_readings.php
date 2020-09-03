@@ -14,10 +14,13 @@ class CreateTableReadings extends Migration
     public function up()
     {
         Schema::create('readings', function (Blueprint $table) {
-            $table->id();
-            $table->integer("part");
-            $table->text("post")->nullable();
-            $table->integer("number_of_questions")->nullable();
+			$table->id();
+			$table->string("question");
+            $table->string("option_a")->nullable();
+            $table->string("option_b")->nullable();
+            $table->string("option_c")->nullable();
+            $table->string("option_d")->nullable();
+            $table->interger("answer");
             $table->timestamps();
         });
     }
